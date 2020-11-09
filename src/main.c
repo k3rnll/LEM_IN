@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by k3                #+#    #+#             */
-/*   Updated: 2020/11/08 15:47:17 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/08 19:08:26 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_lemin *init_lemin(void)
 	lemin = ft_memalloc(sizeof(t_lemin));
 	if (lemin)
 	{
-		if (!(lemin->first_data = ft_memalloc(BUFF * sizeof(char*))))
+		if (!(lemin->first_data = ft_memalloc(BUFF * sizeof(char*))) ||
+			!(lemin->rooms_names = ft_memalloc(BUFF * sizeof(char*))))
 		{
 			free(lemin);
 			return (NULL);
@@ -52,7 +53,10 @@ int		main(int ac, char **av)
 
 	lemin = init_lemin();
 	read_data(lemin);
-	print_data(lemin);
+	if (!parse_data(lemin))
+		ft_putendl_fd("not valid input", 2);
+	else
+		print_data(lemin);
 
 	exit (0);
 }
