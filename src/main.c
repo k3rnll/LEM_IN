@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by k3                #+#    #+#             */
-/*   Updated: 2020/11/08 19:08:26 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/09 22:16:11 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ t_lemin *init_lemin(void)
 	if (lemin)
 	{
 		if (!(lemin->first_data = ft_memalloc(BUFF * sizeof(char*))) ||
-			!(lemin->rooms_names = ft_memalloc(BUFF * sizeof(char*))))
+			!(lemin->rooms_names = ft_memalloc(BUFF * sizeof(char*))) ||
+			!(lemin->rooms_coords = ft_memalloc(BUFF * sizeof(int*))) ||
+			!(lemin->links_names = ft_memalloc(BUFF * sizeof(int*))))
 		{
 			free(lemin);
 			return (NULL);
@@ -31,6 +33,7 @@ t_lemin *init_lemin(void)
 		lemin->data_len = BUFF;
 		lemin->num_ants = 0;
 		lemin->num_rooms = 0;
+		lemin->num_links = 0;
 	}
 	return (lemin);
 }

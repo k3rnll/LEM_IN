@@ -21,6 +21,7 @@ typedef struct		s_lemin
 	int				data_len;
 	int				num_ants;
 	int				num_rooms;
+	int 			num_links;
 	char			**rooms_names;
 	char 			**links_names;
 	int 			**rooms_coords;
