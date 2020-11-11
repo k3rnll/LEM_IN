@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:54:30 by k3                #+#    #+#             */
-/*   Updated: 2020/11/11 14:57:07 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/11 14:57:56 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,6 @@ int 	check_commands(t_lemin *lemin)
 	return (start == 1 && end == 1 ? 1 : 0);
 }
 
-int 	str_w_nums(char *str)
-{
-	while (*str)
-	{
-		if (ft_isdigit(*str))
-			return (1);
-		str++;
-	}
-	return (0);
-}
-
-
 int 	add_room_name(t_lemin *lemin, char **arr)
 {
 	int	*xy;
@@ -56,6 +44,7 @@ int 	add_room_name(t_lemin *lemin, char **arr)
 	lemin->rooms_names[lemin->num_rooms] = arr[0];
 	lemin->rooms_coords[lemin->num_rooms] = xy;
 	lemin->num_rooms += 1;
+
 	return (1);
 }
 
@@ -90,6 +79,17 @@ int 	check_link_names(t_lemin *lemin)
 	return (1);
 }
 
+void 	fill_start_end(t_lemin *lemin, char *name, int i)
+{
+	if (i > 0)
+	{
+		if (ft_strequ(lemin->first_data[i - 1], "##start"))
+			lemin->start_room_name = name;
+		if (ft_strequ(lemin->first_data[i - 1], "##end"))
+			lemin->end_room_name = name;
+	}
+}
+
 int 	check_room_names(t_lemin *lemin)
 {
 	int		i;
@@ -105,6 +105,7 @@ int 	check_room_names(t_lemin *lemin)
 		{
 			if (arr[3] || !(add_room_name(lemin, arr)))
 				return (0);
+			fill_start_end(lemin, arr[0], i);
 		}
 		else if (ft_isnumber(arr[0]))
 		{
