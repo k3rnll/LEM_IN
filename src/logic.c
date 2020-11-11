@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 15:02:53 by k3                #+#    #+#             */
-/*   Updated: 2020/11/11 17:21:52 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/11 17:22:29 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void 	fill_links(t_lemin *lemin)
 		x = get_room_index(lemin, (i + 1) * 2 - 2);
 		y = get_room_index(lemin, (i + 1) * 2 - 1);
 		lemin->rooms_links[x][y] = 1;
+		lemin->rooms_links[y][x] = 1;
 		i++;
 	}
 }

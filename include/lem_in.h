@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by k3                #+#    #+#             */
-/*   Updated: 2020/11/11 15:10:27 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/11 15:24:01 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int					ft_isnumber(char *str);
 void				free_strsplit(char **arr);
 
 int 				rooms_to_massive(t_lemin *lemin);
+int 				find_routes(t_lemin *lemin);
 
 
 #endif

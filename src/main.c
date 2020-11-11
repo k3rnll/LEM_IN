@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by k3                #+#    #+#             */
-/*   Updated: 2020/11/11 17:27:12 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/11 17:27:24 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ int		main(int ac, char **av)
 		print_data(lemin);
 	rooms_to_massive(lemin);
 	print_matrix(lemin);
+	find_routes(lemin);
 	exit (0);
 }
