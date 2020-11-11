@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/11 19:20:43 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/11 20:24:03 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,14 @@ int 	*check_route(t_lemin *lemin, int x)
 			if (x == lemin->num_rooms - 1)
 				break;
 			x = 1;
+		}
+		else if (x == lemin->num_rooms - 1)
+		{
+			i -= 1;
+			x = arr[i];
+			y = arr[i - 1];
+			arr[i] = 0;
+			x++;
 		}
 		else
 			x++;
