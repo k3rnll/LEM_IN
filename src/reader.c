@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:54:30 by k3                #+#    #+#             */
-/*   Updated: 2020/11/09 22:31:44 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/11 14:57:07 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int 	check_commands(t_lemin *lemin)
 		end = ft_strequ(*(lemin->first_data + i), "##end") ? end + 1 : end;
 		i++;
 	}
+	if (i > 0 && !ft_strncmp(*(lemin->first_data + i - 1), "##", 2))
+		return (0);
 	return (start == 1 && end == 1 ? 1 : 0);
 }
 
@@ -73,7 +75,9 @@ int 	check_link_names(t_lemin *lemin)
 	while (i < lemin->data_len)
 	{
 		arr = ft_strsplit(*(lemin->first_data + i), '-');
-		if (arr && *arr[0] != '#' && arr[1] && *arr[1] != '#')
+		if (!arr || !*arr)
+			return (0);
+		if (*arr[0] != '#' && arr[1] && *arr[1] != '#')
 		{
 			if (arr[2] ||
 				(i > 1 && (ft_strequ(lemin->first_data[i - 1], "##start") ||
@@ -95,10 +99,21 @@ int 	check_room_names(t_lemin *lemin)
 	while (i < lemin->data_len)
 	{
 		arr = ft_strsplit(*(lemin->first_data + i), ' ');
-		if (arr && *arr[0] != '#' && arr[1] && arr[2])
+		if (!arr || !*arr)
+			return (0);
+		if (*arr[0] != '#' && arr[1] && arr[2])
 		{
 			if (arr[3] || !(add_room_name(lemin, arr)))
 				return (0);
+		}
+		else if (ft_isnumber(arr[0]))
+		{
+			if (lemin->ants_flag == 1 ||
+				(i > 0 && (ft_strequ(lemin->first_data[i - 1], "##start") ||
+				ft_strequ(lemin->first_data[i - 1], "##end"))))
+				return (0);
+			lemin->num_ants = smart_atoi(arr[0]);
+			lemin->ants_flag = 1;
 		}
 		i++;
 	}
@@ -110,6 +125,10 @@ int 	parse_data(t_lemin *lemin)
 	if (!check_commands(lemin) ||
 		!check_room_names(lemin) ||
 		!check_link_names(lemin))
+		return (0);
+	if (lemin->num_ants < 1 ||
+		!lemin->num_rooms ||
+		!lemin->num_links)
 		return (0);
 	return (1);
 }
@@ -127,5 +146,6 @@ int 	read_data(t_lemin *lemin)
 		lemin->first_data[i] = line;
 		i++;
 	}
+	lemin->data_len = i;
 	return (1);
 }

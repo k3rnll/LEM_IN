@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by k3                #+#    #+#             */
-/*   Updated: 2020/11/09 22:16:11 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/11 11:53:16 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #include "../include/lem_in.h"
 
 #include <stdio.h>
+
+void 	put_error(char *str)
+{
+	ft_putendl(str);
+	exit(1);
+}
 
 t_lemin *init_lemin(void)
 {
@@ -32,6 +38,7 @@ t_lemin *init_lemin(void)
 		}
 		lemin->data_len = BUFF;
 		lemin->num_ants = 0;
+		lemin->ants_flag = 0;
 		lemin->num_rooms = 0;
 		lemin->num_links = 0;
 	}
@@ -43,9 +50,9 @@ void 	print_data(t_lemin *lemin)
 	int i;
 
 	i = 0;
-	while (i < lemin->data_len)
+	while (i < lemin->num_rooms)
 	{
-		printf("%s\n", *(lemin->first_data + i));
+		printf("%s\n", *(lemin->rooms_names + i));
 		i++;
 	}
 }
@@ -57,7 +64,7 @@ int		main(int ac, char **av)
 	lemin = init_lemin();
 	read_data(lemin);
 	if (!parse_data(lemin))
-		ft_putendl_fd("not valid input", 2);
+		put_error("not valid input");
 	else
 		print_data(lemin);
 
