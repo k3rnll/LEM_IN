@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 15:02:53 by k3                #+#    #+#             */
-/*   Updated: 2020/11/11 17:22:29 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/11 19:18:49 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int 	rooms_to_massive(t_lemin *lemin)
 	lemin->rooms_links = new_links_massive(lemin);
 	rebase_rooms_names(lemin);
 
-	print_rooms(lemin);
+//	print_rooms(lemin);
 
 	fill_links(lemin);
 	return (1);

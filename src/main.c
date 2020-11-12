@@ -6,14 +6,12 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by k3                #+#    #+#             */
-/*   Updated: 2020/11/11 17:27:24 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/12 16:56:04 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../include/lem_in.h"
-
-#include <stdio.h>
 
 void 	put_error(char *str)
 {
@@ -45,6 +43,7 @@ t_lemin *init_lemin(void)
 	return (lemin);
 }
 
+/*
 void 	print_data(t_lemin *lemin)
 {
 	int i;
@@ -75,7 +74,7 @@ void 	print_matrix(t_lemin *lemin)
 		printf("\n");
 	}
 }
-
+*/
 int		main(int ac, char **av)
 {
 	t_lemin		*lemin;
@@ -85,10 +84,12 @@ int		main(int ac, char **av)
 
 	if (!parse_data(lemin))
 		put_error("not valid input");
-	else
-		print_data(lemin);
+//	else
+//		print_data(lemin);
 	rooms_to_massive(lemin);
-	print_matrix(lemin);
+//	print_matrix(lemin);
 	find_routes(lemin);
+//	flow_ants(lemin);
+
 	exit (0);
 }
