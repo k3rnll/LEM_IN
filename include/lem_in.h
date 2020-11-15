@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by k3                #+#    #+#             */
-/*   Updated: 2020/11/15 01:46:09 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/15 13:03:06 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct		s_lemin
 	int				**rooms_links;
 	int 			*rooms_total_links;
 	int				**routes;
-	int 			max_route_len;
+	int 			min_route_len;
 
 	int				something;
 }					t_lemin;
@@ -58,5 +58,6 @@ int 				flow_ants(t_lemin *lemin);
 
 
 void 	print_matrix(t_lemin *lemin);
+void 	print_endline(t_lemin *lemin);
 
 #endif

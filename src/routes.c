@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/15 12:30:22 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/15 13:18:00 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,18 +134,13 @@ void 	clean_dead_link(t_lemin *lemin, int y)
 void 	clean_route_in_matrix(t_lemin *lemin, int *arr)
 {
 	int 	i;
-	int 	y;
 
 	i = 0;
-	y = 0;
 	if (arr[i])
 	{
 		while (arr[i] != lemin->num_rooms - 1 && i < lemin->num_rooms)
 		{
 			clean_dead_link(lemin, arr[i]);
-//			lemin->rooms_links[y][arr[i]] = 0;
-//			lemin->rooms_links[arr[i]][y] = 0;
-//			y = arr[i];
 			i++;
 		}
 	}
@@ -184,9 +179,28 @@ int 	*check_route(t_lemin *lemin, int y)
 	}
 	if (*arr)
 //	if (*arr && (arr = rebase_route(lemin, arr)))
-		return(arr);
+	{
+		clean_route_in_matrix(lemin, arr);
+		return (arr);
+	}
 	free(arr);
 	return (NULL);
+}
+
+void 	find_min_bfs(t_lemin *lemin)
+{
+	int y;
+	int bfs;
+
+	lemin->min_route_len = lemin->num_rooms;
+	y = 0;
+	while (y < lemin->num_rooms)
+	{
+		bfs = lemin->rooms_links[y][lemin->num_rooms - 1];
+		if (bfs < lemin->min_route_len && bfs > 0)
+			lemin->min_route_len = bfs;
+		y++;
+	}
 }
 
 int 	find_routes(t_lemin *lemin)
@@ -197,17 +211,19 @@ int 	find_routes(t_lemin *lemin)
 
 	lemin->num_routes = 0;
 	lemin->routes = ft_memalloc(lemin->num_rooms * sizeof(int*));
-	lemin->max_route_len = lemin->num_rooms;
+//	find_min_bfs(lemin);
 	y = 1;
 	l = 0;
 	while (y < lemin->num_rooms)
 	{
-		if (lemin->rooms_links[y][lemin->num_rooms - 1])
+		find_min_bfs(lemin);
+		if (lemin->rooms_links[y][lemin->num_rooms - 1] == lemin->min_route_len)
 		{
 			if ((route = check_route(lemin, y)))
 			{
 				lemin->routes[l++] = route;
 				lemin->num_routes += 1;
+				y = 0;
 			}
 		}
 		y++;
