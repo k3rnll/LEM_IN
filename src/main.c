@@ -6,12 +6,13 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by k3                #+#    #+#             */
-/*   Updated: 2020/11/12 16:56:04 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/15 12:32:06 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../include/lem_in.h"
+#include <stdio.h>
 
 void 	put_error(char *str)
 {
@@ -43,7 +44,7 @@ t_lemin *init_lemin(void)
 	return (lemin);
 }
 
-/*
+
 void 	print_data(t_lemin *lemin)
 {
 	int i;
@@ -73,8 +74,48 @@ void 	print_matrix(t_lemin *lemin)
 		y++;
 		printf("\n");
 	}
+	printf("\n");
+
 }
-*/
+
+void 	print_firstline(t_lemin *lemin, int y)
+{
+	int 	i;
+	i = 0;
+	while (i < lemin->num_rooms)
+	{
+		if (lemin->rooms_links[y][i])
+			printf ("%d.%s ", i, lemin->rooms_names[i]);
+		i++;
+	}
+	printf("\n");
+}
+
+void 	print_endline(t_lemin *lemin)
+{
+	int i;
+	i = 0;
+	while (i < lemin->num_rooms)
+	{
+		if (lemin->rooms_links[i][lemin->num_rooms - 1])
+			printf("r: %d  %d\n", i, lemin->rooms_links[i][lemin->num_rooms - 1]);
+		i++;
+	}
+	printf("\n");
+}
+
+void 	print_total_links(t_lemin *lemin)
+{
+	int i;
+	i = 0;
+	while (i < lemin->num_rooms)
+	{
+		if (lemin->rooms_total_links[i * 2] > 1 || lemin->rooms_total_links[i * 2 + 1] > 1)
+			printf("room index: %d in: %d out: %d\n", i, lemin->rooms_total_links[i * 2], lemin->rooms_total_links[i * 2 + 1]);
+		i++;
+	}
+}
+
 int		main(int ac, char **av)
 {
 	t_lemin		*lemin;
@@ -87,9 +128,25 @@ int		main(int ac, char **av)
 //	else
 //		print_data(lemin);
 	rooms_to_massive(lemin);
+	bfs(lemin);
+	del_mirror(lemin);
+	del_deadends(lemin);
+//	print_total_links(lemin);
+//	printf("-----\n");
+
+	del_input_forks(lemin);
+//	del_output_forks(lemin);
+//	print_total_links(lemin);
+//	print_firstline(lemin, 0);
+//	printf("\n");
 //	print_matrix(lemin);
+
+//	print_firstline(lemin, 1519);
 	find_routes(lemin);
 //	flow_ants(lemin);
+
+//	print_endline(lemin);
+//	print_matrix(lemin);
 
 	exit (0);
 }

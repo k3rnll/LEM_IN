@@ -6,13 +6,12 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 15:02:53 by k3                #+#    #+#             */
-/*   Updated: 2020/11/11 19:18:49 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/14 21:15:00 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 #include "../libft/libft.h"
-#include <stdio.h>
 
 int 	get_room_index(t_lemin *lemin, int l)
 {
@@ -90,26 +89,11 @@ void 	rebase_rooms_names(t_lemin *lemin)
 	}
 }
 
-void	print_rooms(t_lemin *lemin)
-{
-	int 	i;
-	i = 0;
-	printf("\n");
-	while (i < lemin->num_rooms)
-	{
-		printf("%s ", lemin->rooms_names[i]);
-		i++;
-	}
-	printf("\n\n");
-}
-
 int 	rooms_to_massive(t_lemin *lemin)
 {
+	lemin->rooms_total_links = ft_memalloc((lemin->num_rooms * 2) * sizeof(int));
 	lemin->rooms_links = new_links_massive(lemin);
 	rebase_rooms_names(lemin);
-
-//	print_rooms(lemin);
-
 	fill_links(lemin);
 	return (1);
 }

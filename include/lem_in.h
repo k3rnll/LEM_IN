@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by k3                #+#    #+#             */
-/*   Updated: 2020/11/12 13:10:52 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/15 01:46:09 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ typedef struct		s_lemin
 	char 			**links_names;
 	int 			**rooms_coords;
 	int				**rooms_links;
+	int 			*rooms_total_links;
 	int				**routes;
+	int 			max_route_len;
 
 	int				something;
 }					t_lemin;
@@ -43,9 +45,18 @@ int					smart_atoi(char *str);
 int					ft_isnumber(char *str);
 void				free_strsplit(char **arr);
 
+
+int 				bfs(t_lemin *lemin);
+void 				del_mirror(t_lemin *lemin);
+void 				del_deadends(t_lemin *lemin);
+void 				del_input_forks(t_lemin *lemin);
+void 				del_output_forks(t_lemin *lemin);
+
 int 				rooms_to_massive(t_lemin *lemin);
 int 				find_routes(t_lemin *lemin);
 int 				flow_ants(t_lemin *lemin);
 
+
+void 	print_matrix(t_lemin *lemin);
 
 #endif
