@@ -24,7 +24,8 @@ int			check_commands(t_lemin *lemin)
 	end = 0;
 	while (i < lemin->data_len)
 	{
-		start = ft_strequ(*(lemin->first_data + i), "##start") ? start + 1 : start;
+		start = ft_strequ(*(lemin->first_data + i), "##start")
+			? start + 1 : start;
 		end = ft_strequ(*(lemin->first_data + i), "##end") ? end + 1 : end;
 		i++;
 	}
@@ -65,8 +66,6 @@ int			check_link_names(t_lemin *lemin)
 		arr = ft_strsplit(*(lemin->first_data + i), '-');
 		if (!arr || !*arr)
 			return (0);
-		if (*arr[0] != 'L')
-			put_error("ERROR: room name starts from \'L!\'");
 		if (*arr[0] != '#' && arr[1] && *arr[1] != '#')
 		{
 			if (arr[2] ||
@@ -102,6 +101,8 @@ int			check_room_names(t_lemin *lemin)
 		arr = ft_strsplit(*(lemin->first_data + i), ' ');
 		if (!arr || !*arr)
 			return (0);
+		if (*arr[0] == 'L')
+			put_error("ERROR: room name starts from L!");
 		if (*arr[0] != '#' && arr[1] && arr[2])
 		{
 			if (arr[3] || !(add_room_name(lemin, arr)))
@@ -144,7 +145,8 @@ int			read_data(t_lemin *lemin)
 	while (get_next_line(0, &line))
 	{
 		if (i == lemin->data_len)
-			lemin->first_data = realloc_data(lemin->first_data, &lemin->data_len);
+			lemin->first_data = realloc_data(lemin->first_data,
+				&lemin->data_len);
 		lemin->first_data[i] = line;
 		i++;
 	}

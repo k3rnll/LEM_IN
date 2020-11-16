@@ -13,9 +13,9 @@
 #include "../include/lem_in.h"
 #include "../libft/libft.h"
 
-int 	get_room_index(t_lemin *lemin, int l)
+int			get_room_index(t_lemin *lemin, int l)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (i < lemin->num_rooms)
@@ -27,11 +27,11 @@ int 	get_room_index(t_lemin *lemin, int l)
 	return (-1);
 }
 
-void 	fill_links(t_lemin *lemin)
+void		fill_links(t_lemin *lemin)
 {
-	int 	i;
-	int 	x;
-	int 	y;
+	int		i;
+	int		x;
+	int		y;
 
 	i = 0;
 	while (i < lemin->num_links)
@@ -44,10 +44,10 @@ void 	fill_links(t_lemin *lemin)
 	}
 }
 
-int 	**new_links_massive(t_lemin *lemin)
+int			**new_links_massive(t_lemin *lemin)
 {
-	int **matrix;
-	int i;
+	int		**matrix;
+	int		i;
 
 	matrix = ft_memalloc(lemin->num_rooms * sizeof(int**));
 	i = 0;
@@ -60,9 +60,9 @@ int 	**new_links_massive(t_lemin *lemin)
 	return (matrix);
 }
 
-void 	rebase_rooms_names(t_lemin *lemin)
+void		rebase_rooms_names(t_lemin *lemin)
 {
-	char 	*tmp;
+	char	*tmp;
 	int		i;
 
 	i = 0;
@@ -89,9 +89,10 @@ void 	rebase_rooms_names(t_lemin *lemin)
 	}
 }
 
-int 	rooms_to_massive(t_lemin *lemin)
+int			rooms_to_massive(t_lemin *lemin)
 {
-	lemin->rooms_total_links = ft_memalloc((lemin->num_rooms * 2) * sizeof(int));
+	lemin->rooms_total_links = ft_memalloc((lemin->num_rooms * 2)
+		* sizeof(int));
 	lemin->rooms_links = new_links_massive(lemin);
 	rebase_rooms_names(lemin);
 	fill_links(lemin);

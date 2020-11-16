@@ -99,7 +99,8 @@ void			print_endline(t_lemin *lemin)
 	while (i < lemin->num_rooms)
 	{
 		if (lemin->rooms_links[i][lemin->num_rooms - 1])
-			printf("r: %d  %d\n", i, lemin->rooms_links[i][lemin->num_rooms - 1]);
+			printf("r: %d  %d\n", i, lemin->rooms_links[i]
+				[lemin->num_rooms - 1]);
 		i++;
 	}
 	printf("\n");
@@ -112,8 +113,10 @@ void			print_total_links(t_lemin *lemin)
 	i = 0;
 	while (i < lemin->num_rooms)
 	{
-		if (lemin->rooms_total_links[i * 2] > 1 || lemin->rooms_total_links[i * 2 + 1] > 1)
-			printf("room index: %d in: %d out: %d\n", i, lemin->rooms_total_links[i * 2], lemin->rooms_total_links[i * 2 + 1]);
+		if (lemin->rooms_total_links[i * 2] > 1 ||
+			lemin->rooms_total_links[i * 2 + 1] > 1)
+			printf("room index: %d in: %d out: %d\n", i,
+				lemin->rooms_total_links[i * 2], lemin->rooms_total_links[i * 2 + 1]);
 		i++;
 	}
 }

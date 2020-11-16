@@ -31,10 +31,10 @@ void	print_route(t_lemin *lemin, int **arr)
 	int	l;
 
 	i = 0;
-	while (arr[i] &&  i < lemin->num_rooms)
+	while (arr[i] && i < lemin->num_rooms)
 	{
 		l = 0;
-		printf ("[%d] ", route_len(lemin, arr[i]));
+		printf("[%d] ", route_len(lemin, arr[i]));
 		while (l < lemin->num_rooms && arr[i][l] != 0)
 		{
 			printf("%s ", lemin->rooms_names[arr[i][l]]);
@@ -156,6 +156,4 @@ int		find_routes(t_lemin *lemin)
 	}
 	if (*(lemin->routes))
 		print_route(lemin, lemin->routes);
-//	else
-//		printf("\nno route found\n");
 }

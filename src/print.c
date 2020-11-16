@@ -44,13 +44,15 @@ void		print_ant(t_lemin *lemin, t_ant *ant)
 {
 	if (ant->step != 0)
 	{
-		if (lemin->routes[ant->route_index][ant->curr_room] == lemin->num_rooms - 1)
+		if (lemin->routes[ant->route_index][ant->curr_room] ==
+			lemin->num_rooms - 1)
 			ant->step = 0;
 		ft_putchar(' ');
 		ft_putchar('L');
 		ft_putnbr(ant->ant_num);
 		ft_putchar('-');
-		ft_putstr(lemin->rooms_names[lemin->routes[ant->route_index][ant->curr_room]]);
+		ft_putstr(lemin->rooms_names[lemin->routes
+			[ant->route_index][ant->curr_room]]);
 		ant->curr_room += 1;
 	}
 }
