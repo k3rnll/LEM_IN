@@ -6,7 +6,7 @@
 /*   By: clouise <clouise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 13:24:10 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 13:38:00 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,19 @@ void 	print_ants(t_lemin *lemin, t_ant *ant, int i)
 	}
 }
 
+int 	all_is_printed(t_ant **ant_groups, int total_use)
+{
+	int i;
+
+	i = 0;
+	while (i < total_use)
+	{
+		if (ant_groups[i]->last->step)
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 void    flow_ants(t_lemin *lemin)
 {
@@ -97,7 +110,7 @@ void    flow_ants(t_lemin *lemin)
 		}
 	}
 	i = 0;
-    while (ant_groups[use - 1]->last->step)
+    while (!all_is_printed(ant_groups, total_use))
 	{
     	use = 0;
     	while (use < total_use)
