@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by k3                #+#    #+#             */
-/*   Updated: 2020/11/15 21:07:55 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 12:03:05 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int					parse_data(t_lemin *lemin);
 char				**realloc_data(char **old, int *data_len);
 int					smart_atoi(char *str);
 int					ft_isnumber(char *str);
+int 				route_len(t_lemin *lemin, int *arr);
+
 
 
 void 				bfs(t_lemin *lemin);
@@ -61,6 +63,8 @@ void 				del_input_forks(t_lemin *lemin);
 int 				rooms_to_massive(t_lemin *lemin);
 int 				find_routes(t_lemin *lemin);
 void 				flow_ants(t_lemin *lemin);
+int 				routes_to_use(t_lemin *lemin, int ants);
+
 
 
 void 	print_matrix(t_lemin *lemin);

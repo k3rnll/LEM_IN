@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/15 17:19:25 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 12:57:46 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	print_route(t_lemin *lemin, int **arr)
 		printf ("[%d] ", route_len(lemin, arr[i]));
 		while (l < lemin->num_rooms && arr[i][l] != 0)
 		{
-			printf("%s: %d ", lemin->rooms_names[arr[i][l]], arr[i][l]);
+			printf("%s ", lemin->rooms_names[arr[i][l]]);
 			l++;
 		}
 		printf("\n");
