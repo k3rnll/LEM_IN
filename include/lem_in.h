@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 12:03:05 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 12:12:18 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ typedef struct      s_ant
 	int             route_index;
 	int             curr_room;
 	int             step;
-	struct s_ant    *next;
+	struct s_ant  	*next;
+	struct s_ant  	*last;
 }                   t_ant;
 
 

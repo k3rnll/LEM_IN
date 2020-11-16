@@ -6,7 +6,7 @@
 /*   By: clouise <clouise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 13:01:39 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 13:24:10 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,18 @@ t_ant *new_ant(int num, int ind)
 	ant->route_index = ind;
 	ant->curr_room = 0;
 	ant->next = NULL;
+	ant->last = ant;
     return (ant);
 }
 
 void	add_ant(t_ant *ant, int num, int ind)
 {
+	t_ant *head;
+	head = ant;
 	while (ant->next)
 		ant = ant->next;
 	ant->next = new_ant(num, ind);
-}
-
-
-static int      intlen(int *arr)
-{
-    int i;
-
-    i = 0;
-    while(arr[i] != 0)
-        i++;
-    return(i);
+	head->last = ant->next;
 }
 
 void    print_ant(t_lemin *lemin, t_ant *ant)
@@ -57,8 +50,6 @@ void    print_ant(t_lemin *lemin, t_ant *ant)
 		ft_putnbr(ant->ant_num);
 		ft_putchar('-');
 		ft_putstr(lemin->rooms_names[lemin->routes[ant->route_index][ant->curr_room]]);
-//		ft_putchar('-');
-//		ft_putnbr(lemin->routes[ant->route_index][ant->curr_room]);
 		ant->curr_room +=1;
 	}
 }
@@ -78,7 +69,6 @@ void 	print_ants(t_lemin *lemin, t_ant *ant, int i)
 
 void    flow_ants(t_lemin *lemin)
 {
- //   t_ant	*ant;
     t_ant	**ant_groups;
 	int 	use;
 	int 	total_use;
@@ -107,7 +97,7 @@ void    flow_ants(t_lemin *lemin)
 		}
 	}
 	i = 0;
-    while (i < lemin->num_ants * 2 * 2)
+    while (ant_groups[use - 1]->last->step)
 	{
     	use = 0;
     	while (use < total_use)
@@ -116,8 +106,7 @@ void    flow_ants(t_lemin *lemin)
 			use++;
 		}
 		write(1, "\n", 1);
-
-		i++;
+		i = i < lemin->num_ants ? i + 1 : i;
     }
 
 }
