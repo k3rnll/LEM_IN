@@ -6,7 +6,7 @@
 /*   By: clouise <clouise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 19:05:59 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 19:09:08 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,12 @@ void    flow_ants(t_lemin *lemin)
 
     total_use = routes_to_use(lemin, lemin->num_ants);
     ant_groups = ft_memalloc(total_use * sizeof(int*));
-    ants = 1;
+    ants = 0;
     i = 0;
     while (i < total_use)
 	{
-    	ant_groups[i] = new_ant(ants, i);
 		ants++;
+		ant_groups[i] = new_ant(ants, i);
     	i++;
 	}
     while (ants < lemin->num_ants)
