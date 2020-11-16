@@ -15,9 +15,9 @@
 
 #include <stdio.h>
 
-int 	route_len(t_lemin *lemin, int *arr)
+int		route_len(t_lemin *lemin, int *arr)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (arr[len] != lemin->num_rooms - 1 && len < lemin->num_rooms)
@@ -27,8 +27,8 @@ int 	route_len(t_lemin *lemin, int *arr)
 
 void	print_route(t_lemin *lemin, int **arr)
 {
-	int i;
-	int l;
+	int	i;
+	int	l;
 
 	i = 0;
 	while (arr[i] &&  i < lemin->num_rooms)
@@ -46,9 +46,9 @@ void	print_route(t_lemin *lemin, int **arr)
 	printf("\n");
 }
 
-void 	clean_dead_link(t_lemin *lemin, int y)
+void	clean_dead_link(t_lemin *lemin, int y)
 {
-	int 	i;
+	int	i;
 
 	i = 0;
 	ft_bzero(lemin->rooms_links[y], lemin->num_rooms * sizeof(int));
@@ -59,9 +59,9 @@ void 	clean_dead_link(t_lemin *lemin, int y)
 	}
 }
 
-void 	clean_route_in_matrix(t_lemin *lemin, int *arr)
+void	clean_route_in_matrix(t_lemin *lemin, int *arr)
 {
-	int 	i;
+	int	i;
 
 	i = 0;
 	if (arr[i])
@@ -74,9 +74,9 @@ void 	clean_route_in_matrix(t_lemin *lemin, int *arr)
 	}
 }
 
-int 	get_in_point(t_lemin *lemin, int y)
+int		get_in_point(t_lemin *lemin, int y)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	while (x < lemin->num_rooms)
@@ -88,11 +88,11 @@ int 	get_in_point(t_lemin *lemin, int y)
 	return (0);
 }
 
-int 	*check_route(t_lemin *lemin, int y)
+int		*check_route(t_lemin *lemin, int y)
 {
-	int *arr;
-	int i;
-	int x;
+	int	*arr;
+	int	i;
+	int	x;
 
 	x = lemin->num_rooms - 1;
 	arr = ft_memalloc(lemin->num_rooms * sizeof(int));
@@ -114,10 +114,10 @@ int 	*check_route(t_lemin *lemin, int y)
 	return (NULL);
 }
 
-void 	find_min_bfs(t_lemin *lemin)
+void	find_min_bfs(t_lemin *lemin)
 {
-	int y;
-	int bfs;
+	int	y;
+	int	bfs;
 
 	lemin->min_route_len = lemin->num_rooms;
 	y = 0;
@@ -130,11 +130,11 @@ void 	find_min_bfs(t_lemin *lemin)
 	}
 }
 
-int 	find_routes(t_lemin *lemin)
+int		find_routes(t_lemin *lemin)
 {
-	int *route;
-	int l;
-	int y;
+	int	*route;
+	int	l;
+	int	y;
 
 	lemin->num_routes = 0;
 	lemin->routes = ft_memalloc(lemin->num_rooms * sizeof(int*));

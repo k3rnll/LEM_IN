@@ -13,9 +13,9 @@
 #include "../libft/libft.h"
 #include "../include/lem_in.h"
 
-void 	free_first_data(char **old, int *data_len)
+void		free_first_data(char **old, int *data_len)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (i < *data_len)
@@ -26,9 +26,9 @@ void 	free_first_data(char **old, int *data_len)
 	free(old);
 }
 
-char 	**realloc_data(char **old, int *data_len)
+char		**realloc_data(char **old, int *data_len)
 {
-	char 	**new;
+	char	**new;
 
 	new = ft_memalloc((*data_len + BUFF) * 8);
 	if (new)
@@ -42,7 +42,7 @@ char 	**realloc_data(char **old, int *data_len)
 	{
 		free_first_data(old, data_len);
 		ft_putendl_fd("ERROR: no memory", 2);
-		exit (1);
+		exit(1);
 	}
 	return (new);
 }

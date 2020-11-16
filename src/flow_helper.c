@@ -1,6 +1,6 @@
 #include "../include/lem_in.h"
 
-int 	route_len_sum(t_lemin *lemin, int x)
+int		route_len_sum(t_lemin *lemin, int x)
 {
 	int i;
 	int sum;
@@ -11,15 +11,16 @@ int 	route_len_sum(t_lemin *lemin, int x)
 	sum = 0;
 	while (i)
 	{
-		sum += route_len(lemin, lemin->routes[x - 1]) - route_len(lemin, lemin->routes[i - 1]);
+		sum += route_len(lemin, lemin->routes[x - 1]) -
+			route_len(lemin, lemin->routes[i - 1]);
 		i--;
 	}
 	return (sum);
 }
 
-int 	routes_to_use(t_lemin *lemin, int ants)
+int		routes_to_use(t_lemin *lemin, int ants)
 {
-	int i;
+	int	i;
 
 	if (lemin->num_routes == 1)
 		return (1);
