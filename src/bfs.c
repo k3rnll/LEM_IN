@@ -6,12 +6,41 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 16:49:00 by k3                #+#    #+#             */
-/*   Updated: 2020/11/15 13:29:29 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 18:18:31 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 #include "../libft/libft.h"
+
+void		reset_bfs(t_lemin *lemin)
+{
+	int x;
+	int y;
+
+	y = 0;
+	while (y < lemin->num_rooms)
+	{
+		x = 0;
+		while (x < lemin->num_rooms)
+		{
+			if (lemin->rooms_links[y][x])
+				lemin->rooms_links[y][x] = 1;
+			x++;
+		}
+		y++;
+	}
+	bfs(lemin);
+	y = 0;
+	while (y < lemin->num_rooms)
+	{
+		if (lemin->rooms_links[y][lemin->num_rooms - 1] == 1)
+			lemin->rooms_links[y][lemin->num_rooms - 1] = 0;
+		y++;
+	}
+}
+
+
 
 int 	path_has_out_forks(t_lemin *lemin, int y)
 {

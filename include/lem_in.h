@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 12:12:18 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 13:29:49 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int 				route_len(t_lemin *lemin, int *arr);
 
 
 void 				bfs(t_lemin *lemin);
+void				reset_bfs(t_lemin *lemin);
 void 				del_mirror(t_lemin *lemin);
 void 				del_deadends(t_lemin *lemin);
 void 				del_input_forks(t_lemin *lemin);

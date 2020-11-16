@@ -6,7 +6,7 @@
 /*   By: clouise <clouise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 13:38:00 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 19:05:59 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void    flow_ants(t_lemin *lemin)
     while (i < total_use)
 	{
     	ant_groups[i] = new_ant(ants, i);
-    	ants++;
+		ants++;
     	i++;
 	}
     while (ants < lemin->num_ants)

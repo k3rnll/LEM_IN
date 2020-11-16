@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 12:34:46 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 19:11:06 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ void 	print_endline(t_lemin *lemin)
 	while (i < lemin->num_rooms)
 	{
 		if (lemin->rooms_links[i][lemin->num_rooms - 1])
-			printf("r: %d  %d\n", i, lemin->rooms_links[i][lemin->num_rooms - 1]);
+			printf("%s: ind_%d  bfs: %d\n", lemin->rooms_names[i],
+		  i, lemin->rooms_links[i][lemin->num_rooms - 1]);
 		i++;
 	}
 	printf("\n");
@@ -129,24 +130,20 @@ int		main(int ac, char **av)
 //		print_data(lemin);
 	rooms_to_massive(lemin);
 	bfs(lemin);
-	del_mirror(lemin);
-	del_deadends(lemin);
-//	print_total_links(lemin);
-//	printf("-----\n");
-
-	del_input_forks(lemin);
-//	del_output_forks(lemin);
-//	print_total_links(lemin);
-//	print_firstline(lemin, 0);
-//	printf("\n");
 //	print_matrix(lemin);
 
-//	print_firstline(lemin, 1519);
+//	del_mirror(lemin);
+
+//	del_deadends(lemin);
+//	del_input_forks(lemin);
+//	print_firstline(lemin, 0);
+//	print_endline(lemin);
+
 	find_routes(lemin);
 	flow_ants(lemin);
-	printf("routes to use: %d\n",routes_to_use(lemin, lemin->num_ants));
-//	print_endline(lemin);
-//	print_matrix(lemin);
+// */
+//	printf("routes to use: %d\n",routes_to_use(lemin, lemin->num_ants));
+
 
 	exit (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 12:57:46 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 18:55:18 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@ int 	route_len(t_lemin *lemin, int *arr)
 	while (arr[len] != lemin->num_rooms - 1 && len < lemin->num_rooms)
 		len++;
 	return (len);
+}
+
+void	print_one_route(t_lemin *lemin, int *arr)
+{
+	int l;
+
+		l = 0;
+		printf ("[%d] ", route_len(lemin, arr) + 1);
+		while (l <= route_len(lemin, arr))
+		{
+			printf("%s ", lemin->rooms_names[arr[l]]);
+			l++;
+		}
+
+	printf("\n");
 }
 
 void	print_route(t_lemin *lemin, int **arr)
@@ -74,6 +89,22 @@ void 	clean_route_in_matrix(t_lemin *lemin, int *arr)
 	}
 }
 
+/*
+void 	clean_route_in_matrix(t_lemin *lemin, int *arr)
+{
+	int i;
+	int y;
+	i = 0;
+	y = 0;
+	while (i < route_len(lemin, arr))
+	{
+		lemin->rooms_links[y][arr[i]] = 0;
+		y = arr[i];
+		i++;
+	}
+}
+*/
+
 int 	get_in_point(t_lemin *lemin, int y)
 {
 	int x;
@@ -94,6 +125,9 @@ int 	*check_route(t_lemin *lemin, int y)
 	int i;
 	int x;
 
+	int tmp;
+	tmp = y;
+
 	x = lemin->num_rooms - 1;
 	arr = ft_memalloc(lemin->num_rooms * sizeof(int));
 	i = lemin->rooms_links[y][lemin->num_rooms - 1] - 1;
@@ -105,9 +139,15 @@ int 	*check_route(t_lemin *lemin, int y)
 		y = get_in_point(lemin, y);
 		i--;
 	}
+//	clean_route_in_matrix(lemin, arr);
+	ft_bzero(lemin->rooms_links[tmp], lemin->num_rooms * sizeof(int));
+//	print_one_route(lemin, arr);
 	if (*arr)
 	{
 		clean_route_in_matrix(lemin, arr);
+		reset_bfs(lemin);
+//		print_endline(lemin);
+//		print_matrix(lemin);
 		return (arr);
 	}
 	free(arr);
@@ -149,13 +189,13 @@ int 	find_routes(t_lemin *lemin)
 			{
 				lemin->routes[l++] = route;
 				lemin->num_routes += 1;
-				y = 0;
 			}
+			y = 0;
 		}
 		y++;
 	}
-	if (*(lemin->routes))
-		print_route(lemin, lemin->routes);
+//	if (*(lemin->routes))
+//		print_route(lemin, lemin->routes);
 //	else
 //		printf("\nno route found\n");
 }
