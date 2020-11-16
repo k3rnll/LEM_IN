@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 20:37:55 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 20:48:24 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ int 	*check_route(t_lemin *lemin, int y)
 //		print_matrix(lemin);
 		return (arr);
 	}
+	reset_bfs(lemin);
 	free(arr);
 	return (NULL);
 }
