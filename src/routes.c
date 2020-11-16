@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 18:55:18 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 20:37:55 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ void 	find_min_bfs(t_lemin *lemin)
 	while (y < lemin->num_rooms)
 	{
 		bfs = lemin->rooms_links[y][lemin->num_rooms - 1];
-		if (bfs < lemin->min_route_len && bfs > 0)
+		if (bfs < lemin->min_route_len && bfs > 1)
 			lemin->min_route_len = bfs;
 		y++;
 	}
@@ -182,8 +182,8 @@ int 	find_routes(t_lemin *lemin)
 	l = 0;
 	while (y < lemin->num_rooms)
 	{
-		find_min_bfs(lemin);
-		if (lemin->rooms_links[y][lemin->num_rooms - 1] == lemin->min_route_len)
+//		find_min_bfs(lemin);
+		if (lemin->rooms_links[y][lemin->num_rooms - 1] > 1)
 		{
 			if ((route = check_route(lemin, y)))
 			{

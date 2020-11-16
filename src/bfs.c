@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 16:49:00 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 18:18:31 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 20:43:10 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,6 @@ void		reset_bfs(t_lemin *lemin)
 		y++;
 	}
 	bfs(lemin);
-	y = 0;
-	while (y < lemin->num_rooms)
-	{
-		if (lemin->rooms_links[y][lemin->num_rooms - 1] == 1)
-			lemin->rooms_links[y][lemin->num_rooms - 1] = 0;
-		y++;
-	}
 }
 
 
@@ -204,6 +197,8 @@ int 	ocrd_add(t_lemin *lemin, int *ocrd, int y, int step)
 				ocrd++;
 				len++;
 			}
+			if (x == lemin->num_rooms - 1)
+				return (-1);
 		}
 		x++;
 	}
@@ -216,6 +211,7 @@ void 	bfs(t_lemin *lemin)
 	int		len;
 	int 	cur;
 	int 	step;
+	int 	tmp;
 
 	ocrd = ft_memalloc((2 * lemin->num_rooms) * sizeof(int));
 	step = 1;
@@ -225,7 +221,15 @@ void 	bfs(t_lemin *lemin)
 	while (*ocrd)
 	{
 		if (*ocrd != lemin->num_rooms - 1)
-			cur += ocrd_add(lemin, ocrd, *ocrd, step);
+		{
+			tmp = ocrd_add(lemin, ocrd, *ocrd, step);
+			if (tmp < 0)
+			{
+				free(ocrd);
+				break;
+			}
+			cur += tmp;
+		}
 		shift_ocrd(lemin, ocrd);
 		len--;
 		if (len == 0)
@@ -235,6 +239,9 @@ void 	bfs(t_lemin *lemin)
 			cur = 0;
 		}
 		if (len == 0)
+		{
+			free(ocrd);
 			break;
+		}
 	}
 }
