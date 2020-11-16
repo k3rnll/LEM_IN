@@ -99,10 +99,8 @@ int			check_room_names(t_lemin *lemin)
 	while (i < lemin->data_len)
 	{
 		arr = ft_strsplit(*(lemin->first_data + i), ' ');
-		if (!arr || !*arr)
+		if (!arr || !*arr || (*arr[0] == 'L'))
 			return (0);
-		if (*arr[0] == 'L')
-			put_error("ERROR: room name starts from L!");
 		if (*arr[0] != '#' && arr[1] && arr[2])
 		{
 			if (arr[3] || !(add_room_name(lemin, arr)))
