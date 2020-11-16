@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by k3                #+#    #+#             */
-/*   Updated: 2020/11/15 13:03:06 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/15 21:07:55 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,17 @@ typedef struct		s_lemin
 	int 			*rooms_total_links;
 	int				**routes;
 	int 			min_route_len;
-
-	int				something;
 }					t_lemin;
+
+typedef struct      s_ant
+{
+	int             ant_num;
+	int             route_index;
+	int             curr_room;
+	int             step;
+	struct s_ant    *next;
+}                   t_ant;
+
 
 void				put_error(char *str);
 int					read_data(t_lemin *lemin);
@@ -43,18 +51,16 @@ int					parse_data(t_lemin *lemin);
 char				**realloc_data(char **old, int *data_len);
 int					smart_atoi(char *str);
 int					ft_isnumber(char *str);
-void				free_strsplit(char **arr);
 
 
-int 				bfs(t_lemin *lemin);
+void 				bfs(t_lemin *lemin);
 void 				del_mirror(t_lemin *lemin);
 void 				del_deadends(t_lemin *lemin);
 void 				del_input_forks(t_lemin *lemin);
-void 				del_output_forks(t_lemin *lemin);
 
 int 				rooms_to_massive(t_lemin *lemin);
 int 				find_routes(t_lemin *lemin);
-int 				flow_ants(t_lemin *lemin);
+void 				flow_ants(t_lemin *lemin);
 
 
 void 	print_matrix(t_lemin *lemin);

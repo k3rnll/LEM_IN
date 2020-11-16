@@ -6,93 +6,12 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 16:49:00 by k3                #+#    #+#             */
-/*   Updated: 2020/11/15 12:14:18 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/15 13:29:29 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 #include "../libft/libft.h"
-#include <stdio.h>
-
-int 	path_len(t_lemin *lemin, int y, int x)
-{
-	int i;
-	int len;
-	int point;
-
-	point = x;
-	len = 0;
-	while (point != lemin->num_rooms - 1)
-	{
-		i = 0;
-		while (i < lemin->num_rooms)
-		{
-			if (lemin->rooms_links[point][i] < lemin->rooms_links[i][point])
-			{
-				len++;
-				point = i;
-				break ;
-			}
-			if (i == lemin->num_rooms - 1 && lemin->rooms_links[point][i])
-				return (len);
-			if (i == lemin->num_rooms - 1)
-				return (0);
-			i++;
-		}
-	}
-	return (len);
-}
-
-int 	check_in_forks(t_lemin *lemin, int y)
-{
-	int x;
-	int len;
-
-	x = 0;
-	if (y == 0)
-		return (0);
-	while (x < lemin->num_rooms)
-	{
-		if (lemin->rooms_links[y][x] < lemin->rooms_links[x][y])
-		{
-			len = path_len(lemin, y, x);
-			if (len != 0)
-			{
-				lemin->rooms_links[x][y] = 0;
-				lemin->rooms_links[y][x] = 0;
-			}
-		}
-		x++;
-	}
-	return (1);
-}
-
-void 	del_output_forks(t_lemin *lemin)
-{
-	int y;
-	int i;
-
-	y = lemin->num_rooms - 1;
-	while (y)
-	{
-		if (y == 1519 && lemin->rooms_total_links[y * 2 + 1] > 2)
-		{
-			printf("room index: %d in: %d out: %d\n", y, lemin->rooms_total_links[y * 2], lemin->rooms_total_links[y * 2 + 1]);
-			i = 0;
-			while (i < lemin->num_rooms)
-			{
-				if (lemin->rooms_links[y][i] < lemin->rooms_links[i][y])
-				{
-					ft_putnbr(i);
-					write(1, " ", 1);
-				}
-				i++;
-			}
-			check_in_forks(lemin, y);
-		}
-		y--;
-	}
-}
 
 int 	path_has_out_forks(t_lemin *lemin, int y)
 {
@@ -224,7 +143,7 @@ void 	del_mirror(t_lemin *lemin)
 	}
 }
 
-int 	shift_ocrd(t_lemin *lemin, int *ocrd)
+void 	shift_ocrd(t_lemin *lemin, int *ocrd)
 {
 	int 	i;
 
@@ -262,7 +181,7 @@ int 	ocrd_add(t_lemin *lemin, int *ocrd, int y, int step)
 	return (len);
 }
 
-int 	bfs(t_lemin *lemin)
+void 	bfs(t_lemin *lemin)
 {
 	int 	*ocrd;
 	int		len;

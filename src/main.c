@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by k3                #+#    #+#             */
-/*   Updated: 2020/11/15 12:32:06 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/15 12:40:24 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int		main(int ac, char **av)
 
 //	print_firstline(lemin, 1519);
 	find_routes(lemin);
-//	flow_ants(lemin);
+	flow_ants(lemin);
 
 //	print_endline(lemin);
 //	print_matrix(lemin);

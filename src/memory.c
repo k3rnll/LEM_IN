@@ -13,19 +13,6 @@
 #include "../libft/libft.h"
 #include "../include/lem_in.h"
 
-void 	free_strsplit(char **arr)
-{
-	int	i;
-
-	i  = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
-
 void 	free_first_data(char **old, int *data_len)
 {
 	int 	i;
