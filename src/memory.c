@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 16:24:53 by k3                #+#    #+#             */
-/*   Updated: 2020/11/17 09:23:43 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 14:50:26 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,9 @@ char 	**realloc_data(char **old, int *data_len)
 
 void 	free_strsplit(char **arr)
 {
-	char	**tmp;
-
-	tmp = arr;
 	while (arr && *arr)
 	{
-		free (*arr);
+		free(*arr);
 		arr++;
 	}
-	free(tmp);
 }
