@@ -15,6 +15,8 @@
 
 # define BUFF		1
 
+# include "../libft/libft.h"
+
 typedef struct		s_lemin
 {
 	char			**first_data;
