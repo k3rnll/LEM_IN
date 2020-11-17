@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 16:49:00 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 20:43:10 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 21:31:30 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void		reset_bfs(t_lemin *lemin)
 		y++;
 	}
 	bfs(lemin);
+//	del_mirror(lemin);
+
 }
 
 
@@ -153,7 +155,8 @@ void 	del_mirror(t_lemin *lemin)
 	{
 		while (x < y + 1)
 		{
-			if (lemin->rooms_links[y][x] == lemin->rooms_links[x][y])
+			if (lemin->rooms_links[y][x] > 1 &&
+				lemin->rooms_links[y][x] == lemin->rooms_links[x][y])
 			{
 				lemin->rooms_links[y][x] = 0;
 				lemin->rooms_links[x][y] = 0;

@@ -6,7 +6,7 @@
 /*   By: clouise <clouise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 19:29:25 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 00:17:53 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_ant *new_ant(int num, int ind)
 {
     t_ant *ant;
 
-    if (!(ant = (ft_memalloc(sizeof(t_ant)))))
+    if (!(ant = ft_memalloc(sizeof(t_ant))))
         put_error("no mem for ant");
 	ant->ant_num = num;
 	ant->step = 1;
@@ -80,6 +80,28 @@ int 	all_is_printed(t_ant **ant_groups, int total_use)
 	return (1);
 }
 
+void 	free_ants(t_ant **ant_groups)
+{
+	t_ant	*arr;
+	t_ant	*tmp;
+	t_ant	**tmp2;
+
+	tmp2 = ant_groups;
+	while (*ant_groups)
+	{
+		arr = *ant_groups;
+		while (arr && arr->next)
+		{
+			tmp = arr->next;
+			free(arr);
+			arr = tmp;
+		}
+		free(arr);
+		ant_groups++;
+	}
+	free(tmp2);
+}
+
 void    flow_ants(t_lemin *lemin)
 {
     t_ant	**ant_groups;
@@ -121,5 +143,5 @@ void    flow_ants(t_lemin *lemin)
 		write(1, "\n", 1);
 		i = i < lemin->num_ants ? i + 1 : i;
     }
-
+    free_ants(ant_groups);
 }

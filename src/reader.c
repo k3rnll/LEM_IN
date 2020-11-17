@@ -117,6 +117,7 @@ int 	check_room_names(t_lemin *lemin)
 			lemin->ants_flag = 1;
 		}
 		i++;
+		free(arr);
 	}
 	return (1);
 }

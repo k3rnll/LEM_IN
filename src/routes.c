@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 20:48:24 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 23:29:12 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,14 @@ void 	clean_route_in_matrix(t_lemin *lemin, int *arr)
 void 	clean_route_in_matrix(t_lemin *lemin, int *arr)
 {
 	int i;
-	int y;
+	int len;
+
+	len = route_len(lemin, arr);
 	i = 0;
-	y = 0;
-	while (i < route_len(lemin, arr))
+	while (i < len)
 	{
-		lemin->rooms_links[y][arr[i]] = 0;
-		y = arr[i];
+		if (arr[i] == ind)
+			return (1);
 		i++;
 	}
 }
