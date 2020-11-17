@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 15:02:53 by k3                #+#    #+#             */
-/*   Updated: 2020/11/17 09:23:09 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 16:24:27 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int 	get_room_index(t_lemin *lemin, int l)
 			return (i);
 		i++;
 	}
+	put_error("ERROR");
 	return (-1);
 }
 
@@ -54,7 +55,6 @@ int 	**new_links_massive(t_lemin *lemin)
 	while (i < lemin->num_rooms)
 	{
 		matrix[i] = ft_memalloc(lemin->num_rooms * sizeof(int));
-		ft_bzero(matrix[i], lemin->num_rooms * sizeof(int));
 		i++;
 	}
 	return (matrix);
