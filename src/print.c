@@ -6,7 +6,7 @@
 /*   By: clouise <clouise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by clouise           #+#    #+#             */
-/*   Updated: 2020/11/17 21:00:57 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 21:24:06 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	print_ant(t_lemin *lemin, t_ant *ant)
 		if (lemin->routes[ant->route_index][ant->curr_room] ==
 			lemin->num_rooms - 1)
 			ant->step = 0;
-		ft_putchar(' ');
 		ft_putchar('L');
 		ft_putnbr(ant->ant_num);
 		ft_putchar('-');
 		ft_putstr(lemin->rooms_names[lemin->routes
 			[ant->route_index][ant->curr_room]]);
+		ft_putchar(' ');
 		ant->curr_room += 1;
 	}
 }
@@ -85,6 +85,9 @@ void	flow_ants(t_lemin *lemin)
 	int		ants;
 	int		i;
 
+	if (lemin->num_routes == 0)
+		put_error("ERROR");
+	print_input_data(lemin);
 	total_use = routes_to_use(lemin, lemin->num_ants);
 	ant_groups = ft_memalloc(total_use * sizeof(int*));
 	ants = 0;

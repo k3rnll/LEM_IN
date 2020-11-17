@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/17 21:07:15 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 21:12:13 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct		s_ant
 }					t_ant;
 
 void				put_error(char *str);
+void				print_input_data(t_lemin *lemin);
 int					read_data(t_lemin *lemin);
 void				parse_data(t_lemin *lemin);
 void				check_room_names(t_lemin *lemin);

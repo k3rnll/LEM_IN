@@ -6,20 +6,30 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/17 20:24:44 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 21:24:06 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../include/lem_in.h"
 
-void			put_error(char *str)
+void		put_error(char *str)
 {
 	ft_putendl(str);
 	exit(1);
 }
 
-t_lemin			*init_lemin(void)
+void		print_input_data(t_lemin *lemin)
+{
+	while (*(lemin->first_data))
+	{
+		ft_putendl(*(lemin->first_data));
+		(lemin->first_data)++;
+	}
+	write(1, "\n", 1);
+}
+
+t_lemin		*init_lemin(void)
 {
 	t_lemin		*lemin;
 
@@ -41,7 +51,7 @@ t_lemin			*init_lemin(void)
 	return (lemin);
 }
 
-int				main(int ac, char **av)
+int			main(void)
 {
 	t_lemin		*lemin;
 
@@ -51,9 +61,6 @@ int				main(int ac, char **av)
 	rooms_to_massive(lemin);
 	bfs(lemin);
 	find_routes(lemin);
-	if (lemin->num_routes > 0)
-		flow_ants(lemin);
-	else
-		(put_error("ERROR\n"));
+	flow_ants(lemin);
 	exit(0);
 }
