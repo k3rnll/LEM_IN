@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:54:30 by k3                #+#    #+#             */
-/*   Updated: 2020/11/17 15:18:51 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 16:46:38 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,17 @@ int 	check_commands(t_lemin *lemin)
 	return (start == 1 && end == 1 ? 1 : 0);
 }
 
+void 	check_coords(int **coords, int *xy)
+{
+		while (*coords && (*coords)[1])
+		{
+			if ((*coords)[0] == xy[0] &&
+				(*coords)[1] == xy[1])
+				put_error("ERROR");
+			coords += 2;
+		}
+}
+
 int 	add_room_name(t_lemin *lemin, char **arr)
 {
 	int	*xy;
@@ -41,6 +52,7 @@ int 	add_room_name(t_lemin *lemin, char **arr)
 		return (0);
 	xy[0] = smart_atoi(arr[1]);
 	xy[1] = smart_atoi(arr[2]);
+	check_coords(lemin->rooms_coords, xy);
 	lemin->rooms_names[lemin->num_rooms] = arr[0];
 	lemin->rooms_coords[lemin->num_rooms] = xy;
 	lemin->num_rooms += 1;
