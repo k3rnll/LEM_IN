@@ -5,39 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: clouise <clouise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/17 20:49:28 by k3               ###   ########.fr       */
+/*   Created: 2020/11/11 17:35:29 by clouise           #+#    #+#             */
+/*   Updated: 2020/11/17 21:00:57 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 #include "../libft/libft.h"
-
-t_ant	*new_ant(int num, int ind)
-{
-	t_ant	*ant;
-
-	if (!(ant = ft_memalloc(sizeof(t_ant))))
-		put_error("no mem for ant");
-	ant->ant_num = num;
-	ant->step = 1;
-	ant->route_index = ind;
-	ant->curr_room = 0;
-	ant->next = NULL;
-	ant->last = ant;
-	return (ant);
-}
-
-void	add_ant(t_ant *ant, int num, int ind)
-{
-	t_ant	*head;
-
-	head = ant;
-	while (ant->next)
-		ant = ant->next;
-	ant->next = new_ant(num, ind);
-	head->last = ant->next;
-}
 
 void	print_ant(t_lemin *lemin, t_ant *ant)
 {
@@ -83,28 +57,6 @@ int		all_is_printed(t_ant **ant_groups, int total_use)
 	return (1);
 }
 
-void	free_ants(t_ant **ant_groups)
-{
-	t_ant	*arr;
-	t_ant	*tmp;
-	t_ant	**tmp2;
-
-	tmp2 = ant_groups;
-	while (*ant_groups)
-	{
-		arr = *ant_groups;
-		while (arr && arr->next)
-		{
-			tmp = arr->next;
-			free(arr);
-			arr = tmp;
-		}
-		free(arr);
-		ant_groups++;
-	}
-	free(tmp2);
-}
-
 void	print_ant_groups(t_lemin *lemin, t_ant **ant_groups, int total)
 {
 	int	i;
@@ -126,28 +78,9 @@ void	print_ant_groups(t_lemin *lemin, t_ant **ant_groups, int total)
 	}
 }
 
-void	fill_ant_groups(t_lemin *lemin, t_ant **ant_groups, int ants)
-{
-	int i;
-	int use;
-
-	while (ants < lemin->num_ants)
-	{
-		use = routes_to_use(lemin, lemin->num_ants - ants);
-		i = 0;
-		while (i < use)
-		{
-			ants++;
-			add_ant(ant_groups[i], ants, i);
-			i++;
-		}
-	}
-}
-
 void	flow_ants(t_lemin *lemin)
 {
 	t_ant	**ant_groups;
-	int		use;
 	int		total_use;
 	int		ants;
 	int		i;

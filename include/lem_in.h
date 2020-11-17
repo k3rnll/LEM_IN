@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/17 20:22:55 by tmarkita         ###   ########.fr       */
+/*   Updated: 2020/11/17 21:07:15 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ typedef struct		s_ant
 void				put_error(char *str);
 int					read_data(t_lemin *lemin);
 void				parse_data(t_lemin *lemin);
+void				check_room_names(t_lemin *lemin);
+void				check_coords(int **coords, int *xy);
+int					check_link_names(t_lemin *lemin);
 char				**realloc_data(char **old, int *data_len);
 int					smart_atoi(char *str);
 int					ft_isnumber(char *str);
@@ -55,8 +58,14 @@ void				rooms_to_massive(t_lemin *lemin);
 void				bfs(t_lemin *lemin);
 void				reset_bfs(t_lemin *lemin);
 void				find_routes(t_lemin *lemin);
+void				clean_route_in_matrix(t_lemin *lemin, int *arr);
 void				flow_ants(t_lemin *lemin);
 int					routes_to_use(t_lemin *lemin, int ants);
 void				free_strsplit(char **arr);
+t_ant				*new_ant(int num, int ind);
+void				add_ant(t_ant *ant, int num, int ind);
+void				free_ants(t_ant **ant_groups);
+void				fill_ant_groups(t_lemin *lemin,
+						t_ant **ant_groups, int ants);
 
 #endif
