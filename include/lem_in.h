@@ -13,7 +13,7 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-# define BUFF		1
+# define BUFF		150
 
 typedef struct		s_lemin
 {
