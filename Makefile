@@ -44,7 +44,7 @@ OBJ = $(addprefix $(OBJ_DIR), $(OBJ_LIST))
 
 .PHONY: all clean fclean re
 
-all: $(NAME) $(NAME2)
+all: $(NAME)
 
 $(NAME): $(LIB) $(OBJ_DIR) $(OBJ) $(OBJ_DIR)main.o
 	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(OBJ_DIR)main.o $(LIBR)
@@ -73,7 +73,7 @@ clean:
 
 fclean: clean
 	@rm -f $(LIB)
-	@rm -f $(NAME) $(NAME2)
+	@rm -f $(NAME)
 	@echo fclean Done
 
 re:
