@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:54:30 by k3                #+#    #+#             */
-/*   Updated: 2020/11/17 14:37:00 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 15:18:51 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ int 	add_room_name(t_lemin *lemin, char **arr)
 
 	if (!(xy = ft_memalloc(2 * sizeof(int*))))
 		return (0);
-	xy[0] = ft_atoi(arr[1]);
-	xy[1] = ft_atoi(arr[2]);
+	xy[0] = smart_atoi(arr[1]);
+	xy[1] = smart_atoi(arr[2]);
 	lemin->rooms_names[lemin->num_rooms] = arr[0];
 	lemin->rooms_coords[lemin->num_rooms] = xy;
 	lemin->num_rooms += 1;
-
+	free(arr[1]);
+	free(arr[2]);
 	return (1);
 }
 
@@ -71,10 +72,17 @@ int 	check_link_names(t_lemin *lemin)
 			if (arr[2] ||
 				(i > 1 && (ft_strequ(lemin->first_data[i - 1], "##start") ||
 						ft_strequ(lemin->first_data[i - 1], "##end"))))
+			{
+				free_strsplit(arr);
+				free(arr);
 				return (0);
+			}
 			add_link_name(lemin, arr);
 		}
+		else
+			free_strsplit(arr);
 		i++;
+		free(arr);
 	}
 	return (1);
 }
@@ -106,6 +114,7 @@ int 	check_room_names(t_lemin *lemin)
 			if (arr[3] || !(add_room_name(lemin, arr)))
 			{
 				free_strsplit(arr);
+				free(arr);
 				return (0);
 			}
 			fill_start_end(lemin, arr[0], i);
@@ -117,11 +126,15 @@ int 	check_room_names(t_lemin *lemin)
 				ft_strequ(lemin->first_data[i - 1], "##end"))))
 			{
 				free_strsplit(arr);
+				free(arr);
 				return (0);
 			}
 			lemin->num_ants = smart_atoi(arr[0]);
 			lemin->ants_flag = 1;
+			free_strsplit(arr);
 		}
+		else
+			free_strsplit(arr);
 		i++;
 		free(arr);
 	}
