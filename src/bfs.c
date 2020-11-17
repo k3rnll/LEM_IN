@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 16:49:00 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 21:31:30 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/15 13:29:29 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		reset_bfs(t_lemin *lemin)
 
 int 	path_has_out_forks(t_lemin *lemin, int y)
 {
-	int x;
+	int		x;
 
 	x = 0;
 	if (y == 0)
@@ -55,12 +55,12 @@ int 	path_has_out_forks(t_lemin *lemin, int y)
 		}
 		x++;
 	}
-	return(0);
+	return (0);
 }
 
-int 	check_out_forks(t_lemin *lemin, int y)
+int			check_out_forks(t_lemin *lemin, int y)
 {
-	int x;
+	int		x;
 
 	x = 0;
 	if (y == 0)
@@ -71,9 +71,9 @@ int 	check_out_forks(t_lemin *lemin, int y)
 		{
 			if ((lemin->rooms_total_links[x * 2 + 1] > 1 &&
 				lemin->rooms_total_links[y * 2] > 1) ||
-				(path_has_out_forks(lemin, x) && lemin->rooms_total_links[y * 2] > 1))
+				(path_has_out_forks(lemin, x) &&
+					lemin->rooms_total_links[y * 2] > 1))
 			{
-//				lemin->rooms_total_links[x * 2 + 1] -= 1;
 				lemin->rooms_total_links[y * 2] -= 1;
 				lemin->rooms_links[y][x] = 0;
 				lemin->rooms_links[x][y] = 0;
@@ -84,9 +84,9 @@ int 	check_out_forks(t_lemin *lemin, int y)
 	return (1);
 }
 
-void 	del_input_forks(t_lemin *lemin)
+void		del_input_forks(t_lemin *lemin)
 {
-	int y;
+	int		y;
 
 	y = 0;
 	while (y < lemin->num_rooms)
@@ -99,9 +99,9 @@ void 	del_input_forks(t_lemin *lemin)
 	}
 }
 
-void 	del_cross_lines(t_lemin *lemin, int x)
+void		del_cross_lines(t_lemin *lemin, int x)
 {
-	int y;
+	int		y;
 
 	y = 0;
 	lemin->rooms_total_links[x * 2] = 0;
@@ -114,15 +114,14 @@ void 	del_cross_lines(t_lemin *lemin, int x)
 	}
 }
 
-void 	del_deadends(t_lemin *lemin)
+void		del_deadends(t_lemin *lemin)
 {
-	int 	x;
-	int 	y;
-	int 	in;
-	int 	out;
+	int		x;
+	int		y;
+	int		in;
+	int		out;
 
 	y = 1;
-
 	while (y < lemin->num_rooms - 1)
 	{
 		x = 0;
@@ -144,10 +143,10 @@ void 	del_deadends(t_lemin *lemin)
 	}
 }
 
-void 	del_mirror(t_lemin *lemin)
+void		del_mirror(t_lemin *lemin)
 {
-	int 	x;
-	int 	y;
+	int		x;
+	int		y;
 
 	x = 1;
 	y = lemin->num_rooms - 1;
@@ -168,9 +167,9 @@ void 	del_mirror(t_lemin *lemin)
 	}
 }
 
-void 	shift_ocrd(t_lemin *lemin, int *ocrd)
+void		shift_ocrd(t_lemin *lemin, int *ocrd)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (i < 2 * lemin->num_rooms)
@@ -180,10 +179,10 @@ void 	shift_ocrd(t_lemin *lemin, int *ocrd)
 	}
 }
 
-int 	ocrd_add(t_lemin *lemin, int *ocrd, int y, int step)
+int			ocrd_add(t_lemin *lemin, int *ocrd, int y, int step)
 {
-	int 	x;
-	int 	len;
+	int		x;
+	int		len;
 
 	x = 0;
 	len = 0;

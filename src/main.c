@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 21:29:04 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/16 12:34:46 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include "../include/lem_in.h"
 #include <stdio.h>
 
-void 	put_error(char *str)
+void			put_error(char *str)
 {
 	ft_putendl(str);
 	exit(1);
 }
 
-t_lemin *init_lemin(void)
+t_lemin			*init_lemin(void)
 {
 	t_lemin		*lemin;
 
@@ -44,10 +44,9 @@ t_lemin *init_lemin(void)
 	return (lemin);
 }
 
-
-void 	print_data(t_lemin *lemin)
+void			print_data(t_lemin *lemin)
 {
-	int i;
+	int			i;
 
 	i = 0;
 	while (i < lemin->num_rooms)
@@ -57,10 +56,11 @@ void 	print_data(t_lemin *lemin)
 	}
 }
 
-void 	print_matrix(t_lemin *lemin)
+void			print_matrix(t_lemin *lemin)
 {
-	int x;
-	int y;
+	int			x;
+	int			y;
+
 	y = 0;
 	while (y < lemin->num_rooms)
 	{
@@ -75,25 +75,26 @@ void 	print_matrix(t_lemin *lemin)
 		printf("\n");
 	}
 	printf("\n");
-
 }
 
-void 	print_firstline(t_lemin *lemin, int y)
+void			print_firstline(t_lemin *lemin, int y)
 {
-	int 	i;
+	int			i;
+
 	i = 0;
 	while (i < lemin->num_rooms)
 	{
 		if (lemin->rooms_links[y][i])
-			printf ("%d.%s ", i, lemin->rooms_names[i]);
+			printf("%d.%s ", i, lemin->rooms_names[i]);
 		i++;
 	}
 	printf("\n");
 }
 
-void 	print_endline(t_lemin *lemin)
+void			print_endline(t_lemin *lemin)
 {
-	int i;
+	int			i;
+
 	i = 0;
 	while (i < lemin->num_rooms)
 	{
@@ -105,29 +106,29 @@ void 	print_endline(t_lemin *lemin)
 	printf("\n");
 }
 
-void 	print_total_links(t_lemin *lemin)
+void			print_total_links(t_lemin *lemin)
 {
-	int i;
+	int			i;
+
 	i = 0;
 	while (i < lemin->num_rooms)
 	{
-		if (lemin->rooms_total_links[i * 2] > 1 || lemin->rooms_total_links[i * 2 + 1] > 1)
-			printf("room index: %d in: %d out: %d\n", i, lemin->rooms_total_links[i * 2], lemin->rooms_total_links[i * 2 + 1]);
+		if (lemin->rooms_total_links[i * 2] > 1 ||
+			lemin->rooms_total_links[i * 2 + 1] > 1)
+			printf("room index: %d in: %d out: %d\n", i,
+				lemin->rooms_total_links[i * 2], lemin->rooms_total_links[i * 2 + 1]);
 		i++;
 	}
 }
 
-int		main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	t_lemin		*lemin;
 
 	lemin = init_lemin();
 	read_data(lemin);
-
 	if (!parse_data(lemin))
 		put_error("not valid input");
-//	else
-//		print_data(lemin);
 	rooms_to_massive(lemin);
 	bfs(lemin);
 //	print_matrix(lemin);
