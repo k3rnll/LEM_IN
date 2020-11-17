@@ -6,14 +6,14 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 13:29:49 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 14:37:46 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef LEM_IN_H
 # define LEM_IN_H
 
-# define BUFF		160000
+# define BUFF		1
 
 typedef struct		s_lemin
 {
@@ -45,7 +45,6 @@ typedef struct      s_ant
 	struct s_ant  	*last;
 }                   t_ant;
 
-
 void				put_error(char *str);
 int					read_data(t_lemin *lemin);
 int					parse_data(t_lemin *lemin);
@@ -53,23 +52,12 @@ char				**realloc_data(char **old, int *data_len);
 int					smart_atoi(char *str);
 int					ft_isnumber(char *str);
 int 				route_len(t_lemin *lemin, int *arr);
-
-
-
+int 				rooms_to_massive(t_lemin *lemin);
 void 				bfs(t_lemin *lemin);
 void				reset_bfs(t_lemin *lemin);
-void 				del_mirror(t_lemin *lemin);
-void 				del_deadends(t_lemin *lemin);
-void 				del_input_forks(t_lemin *lemin);
-
-int 				rooms_to_massive(t_lemin *lemin);
 int 				find_routes(t_lemin *lemin);
 void 				flow_ants(t_lemin *lemin);
 int 				routes_to_use(t_lemin *lemin, int ants);
-
-
-
-void 	print_matrix(t_lemin *lemin);
-void 	print_endline(t_lemin *lemin);
+void 				free_strsplit(char **arr);
 
 #endif

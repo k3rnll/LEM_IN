@@ -6,13 +6,12 @@
 /*   By: clouise <clouise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/17 09:20:51 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 10:33:37 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 #include "../libft/libft.h"
-#include <stdio.h>
 
 t_ant		*new_ant(int num, int ind)
 {
@@ -84,7 +83,7 @@ int			all_is_printed(t_ant **ant_groups, int total_use)
 	return (1);
 }
 
-void 	free_ants(t_ant **ant_groups)
+void		free_ants(t_ant **ant_groups)
 {
 	t_ant	*arr;
 	t_ant	*tmp;
@@ -106,7 +105,7 @@ void 	free_ants(t_ant **ant_groups)
 	free(tmp2);
 }
 
-void    flow_ants(t_lemin *lemin)
+void		flow_ants(t_lemin *lemin)
 {
 	t_ant	**ant_groups;
 	int		use;

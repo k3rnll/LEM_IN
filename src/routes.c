@@ -6,14 +6,12 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/17 10:30:40 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 14:29:15 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 #include "../libft/libft.h"
-
-#include <stdio.h>
 
 int		route_len(t_lemin *lemin, int *arr)
 {
@@ -23,42 +21,6 @@ int		route_len(t_lemin *lemin, int *arr)
 	while (arr[len] != lemin->num_rooms - 1 && len < lemin->num_rooms)
 		len++;
 	return (len);
-}
-
-void	print_one_route(t_lemin *lemin, int *arr)
-{
-	int l;
-
-		l = 0;
-		printf ("[%d] ", route_len(lemin, arr) + 1);
-		while (l <= route_len(lemin, arr))
-		{
-			printf("%s ", lemin->rooms_names[arr[l]]);
-			l++;
-		}
-
-	printf("\n");
-}
-
-void	print_route(t_lemin *lemin, int **arr)
-{
-	int	i;
-	int	l;
-
-	i = 0;
-	while (arr[i] && i < lemin->num_rooms)
-	{
-		l = 0;
-		printf("[%d] ", route_len(lemin, arr[i]));
-		while (l < lemin->num_rooms && arr[i][l] != 0)
-		{
-			printf("%s ", lemin->rooms_names[arr[i][l]]);
-			l++;
-		}
-		printf("\n");
-		i++;
-	}
-	printf("\n");
 }
 
 void	clean_dead_link(t_lemin *lemin, int y)
@@ -106,9 +68,6 @@ int		*check_route(t_lemin *lemin, int y)
 	int	i;
 	int	x;
 
-	int tmp;
-	tmp = y;
-
 	x = lemin->num_rooms - 1;
 	arr = ft_memalloc(lemin->num_rooms * sizeof(int));
 	if (y == 0)
@@ -131,36 +90,15 @@ int		*check_route(t_lemin *lemin, int y)
 		else
 			i--;
 	}
-//	clean_route_in_matrix(lemin, arr);
-//	ft_bzero(lemin->rooms_links[tmp], lemin->num_rooms * sizeof(int));
-//	print_one_route(lemin, arr);
 	if (*arr)
 	{
 		clean_route_in_matrix(lemin, arr);
 		reset_bfs(lemin);
-//		print_endline(lemin);
-//		print_matrix(lemin);
 		return (arr);
 	}
 	reset_bfs(lemin);
 	free(arr);
 	return (NULL);
-}
-
-void	find_min_bfs(t_lemin *lemin)
-{
-	int	y;
-	int	bfs;
-
-	lemin->min_route_len = lemin->num_rooms;
-	y = 0;
-	while (y < lemin->num_rooms)
-	{
-		bfs = lemin->rooms_links[y][lemin->num_rooms - 1];
-		if (bfs < lemin->min_route_len && bfs > 1)
-			lemin->min_route_len = bfs;
-		y++;
-	}
 }
 
 int		find_routes(t_lemin *lemin)
@@ -177,7 +115,6 @@ int		find_routes(t_lemin *lemin)
 	l = 0;
 	while (y < lemin->num_rooms)
 	{
-//		find_min_bfs(lemin);
 		if ((y == 0 && lemin->rooms_links[y][lemin->num_rooms - 1] > 0) ||
 		lemin->rooms_links[y][lemin->num_rooms - 1] > 1)
 		{
@@ -193,6 +130,5 @@ int		find_routes(t_lemin *lemin)
 		}
 		y++;
 	}
-	if (*(lemin->routes))
-		print_route(lemin, lemin->routes);
+	return (1);
 }

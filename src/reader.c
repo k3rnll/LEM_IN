@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:54:30 by k3                #+#    #+#             */
-/*   Updated: 2020/11/17 09:23:09 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 14:37:00 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,10 @@ int 	check_room_names(t_lemin *lemin)
 		if (*arr[0] != '#' && arr[1] && arr[2])
 		{
 			if (arr[3] || !(add_room_name(lemin, arr)))
+			{
+				free_strsplit(arr);
 				return (0);
+			}
 			fill_start_end(lemin, arr[0], i);
 		}
 		else if (ft_isnumber(arr[0]))
@@ -112,7 +115,10 @@ int 	check_room_names(t_lemin *lemin)
 			if (lemin->ants_flag == 1 ||
 				(i > 0 && (ft_strequ(lemin->first_data[i - 1], "##start") ||
 				ft_strequ(lemin->first_data[i - 1], "##end"))))
+			{
+				free_strsplit(arr);
 				return (0);
+			}
 			lemin->num_ants = smart_atoi(arr[0]);
 			lemin->ants_flag = 1;
 		}
@@ -124,6 +130,10 @@ int 	check_room_names(t_lemin *lemin)
 
 int 	parse_data(t_lemin *lemin)
 {
+	if (!(lemin->rooms_names = ft_memalloc(lemin->data_len * sizeof(char*))) ||
+		!(lemin->rooms_coords = ft_memalloc(lemin->data_len * sizeof(int*))) ||
+		!(lemin->links_names = ft_memalloc(lemin->data_len * sizeof(int*))))
+		return (0);
 	if (!check_commands(lemin) ||
 		!check_room_names(lemin) ||
 		!check_link_names(lemin))
