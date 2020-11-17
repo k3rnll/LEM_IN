@@ -6,7 +6,7 @@
 /*   By: clouise <clouise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 13:38:00 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 09:20:51 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ void    flow_ants(t_lemin *lemin)
 		use = 0;
 		while (use < total_use)
 		{
+			if (lemin->min_route_len == 0)
+				i = lemin->num_ants;
 			print_ants(lemin, ant_groups[use], i + 1);
 			use++;
 		}

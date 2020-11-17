@@ -6,26 +6,25 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:54:30 by k3                #+#    #+#             */
-/*   Updated: 2020/11/11 14:57:56 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 09:23:09 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../include/lem_in.h"
 
-int			check_commands(t_lemin *lemin)
+int 	check_commands(t_lemin *lemin)
 {
-	int		i;
-	int		start;
-	int		end;
+	int 	i;
+	int 	start;
+	int 	end;
 
 	i = 0;
 	start = 0;
 	end = 0;
 	while (i < lemin->data_len)
 	{
-		start = ft_strequ(*(lemin->first_data + i), "##start")
-			? start + 1 : start;
+		start = ft_strequ(*(lemin->first_data + i), "##start") ? start + 1 : start;
 		end = ft_strequ(*(lemin->first_data + i), "##end") ? end + 1 : end;
 		i++;
 	}
@@ -34,9 +33,9 @@ int			check_commands(t_lemin *lemin)
 	return (start == 1 && end == 1 ? 1 : 0);
 }
 
-int			add_room_name(t_lemin *lemin, char **arr)
+int 	add_room_name(t_lemin *lemin, char **arr)
 {
-	int		*xy;
+	int	*xy;
 
 	if (!(xy = ft_memalloc(2 * sizeof(int*))))
 		return (0);
@@ -45,20 +44,21 @@ int			add_room_name(t_lemin *lemin, char **arr)
 	lemin->rooms_names[lemin->num_rooms] = arr[0];
 	lemin->rooms_coords[lemin->num_rooms] = xy;
 	lemin->num_rooms += 1;
+
 	return (1);
 }
 
-void		add_link_name(t_lemin *lemin, char **arr)
+void 	add_link_name(t_lemin *lemin, char **arr)
 {
 	lemin->num_links += 1;
 	lemin->links_names[lemin->num_links * 2 - 2] = arr[0];
 	lemin->links_names[lemin->num_links * 2 - 1] = arr[1];
 }
 
-int			check_link_names(t_lemin *lemin)
+int 	check_link_names(t_lemin *lemin)
 {
 	int		i;
-	char	**arr;
+	char 	**arr;
 
 	i = 0;
 	while (i < lemin->data_len)
@@ -79,7 +79,7 @@ int			check_link_names(t_lemin *lemin)
 	return (1);
 }
 
-void		fill_start_end(t_lemin *lemin, char *name, int i)
+void 	fill_start_end(t_lemin *lemin, char *name, int i)
 {
 	if (i > 0)
 	{
@@ -90,16 +90,16 @@ void		fill_start_end(t_lemin *lemin, char *name, int i)
 	}
 }
 
-int			check_room_names(t_lemin *lemin)
+int 	check_room_names(t_lemin *lemin)
 {
 	int		i;
-	char	**arr;
+	char 	**arr;
 
 	i = 0;
 	while (i < lemin->data_len)
 	{
 		arr = ft_strsplit(*(lemin->first_data + i), ' ');
-		if (!arr || !*arr || (*arr[0] == 'L'))
+		if (!arr || !*arr)
 			return (0);
 		if (*arr[0] != '#' && arr[1] && arr[2])
 		{
@@ -122,7 +122,7 @@ int			check_room_names(t_lemin *lemin)
 	return (1);
 }
 
-int			parse_data(t_lemin *lemin)
+int 	parse_data(t_lemin *lemin)
 {
 	if (!check_commands(lemin) ||
 		!check_room_names(lemin) ||
@@ -135,17 +135,16 @@ int			parse_data(t_lemin *lemin)
 	return (1);
 }
 
-int			read_data(t_lemin *lemin)
+int 	read_data(t_lemin *lemin)
 {
-	char	*line;
-	int		i;
+	char 	*line;
+	int 	i;
 
 	i = 0;
 	while (get_next_line(0, &line))
 	{
 		if (i == lemin->data_len)
-			lemin->first_data = realloc_data(lemin->first_data,
-				&lemin->data_len);
+			lemin->first_data = realloc_data(lemin->first_data, &lemin->data_len);
 		lemin->first_data[i] = line;
 		i++;
 	}

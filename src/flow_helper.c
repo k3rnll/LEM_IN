@@ -22,8 +22,10 @@ int		routes_to_use(t_lemin *lemin, int ants)
 {
 	int	i;
 
-	if (lemin->num_routes == 1)
+	if (lemin->num_routes == 1 || lemin->min_route_len == 0)
 		return (1);
+	if (lemin->num_routes == 0)
+		return (0);
 	i = 1;
 	while (i < lemin->num_routes)
 	{

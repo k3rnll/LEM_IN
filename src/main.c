@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by k3                #+#    #+#             */
-/*   Updated: 2020/11/16 12:34:46 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 10:12:28 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,10 @@ int				main(int ac, char **av)
 //	print_endline(lemin);
 
 	find_routes(lemin);
-	flow_ants(lemin);
+	if (lemin->num_routes > 0)
+		flow_ants(lemin);
+	else
+		(put_error("ERROR\n"));
 // */
 //	printf("routes to use: %d\n",routes_to_use(lemin, lemin->num_ants));
 
