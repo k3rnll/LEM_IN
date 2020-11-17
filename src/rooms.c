@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 21:04:16 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/17 21:07:15 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 21:47:04 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,19 @@ void	fill_start_end(t_lemin *lemin, char *name, int i)
 	}
 }
 
+void 	check_room_duplicate(t_lemin *lemin, char *room)
+{
+	int i;
+
+	i = 0;
+	while (i < lemin->num_rooms)
+	{
+		if (ft_strequ(lemin->rooms_names[i], room))
+			put_error("ERROR");
+		i++;
+	}
+}
+
 void	add_room_name(t_lemin *lemin, char **arr)
 {
 	int	*xy;
@@ -42,7 +55,8 @@ void	add_room_name(t_lemin *lemin, char **arr)
 		put_error("ERROR");
 	xy[0] = smart_atoi(arr[1]);
 	xy[1] = smart_atoi(arr[2]);
-	check_coords(lemin->rooms_coords, xy);
+	check_coords(lemin, xy);
+	check_room_duplicate(lemin, arr[0]);
 	lemin->rooms_names[lemin->num_rooms] = arr[0];
 	lemin->rooms_coords[lemin->num_rooms] = xy;
 	lemin->num_rooms += 1;

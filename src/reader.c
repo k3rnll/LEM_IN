@@ -6,14 +6,21 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:54:30 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/17 21:07:15 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 22:23:16 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../include/lem_in.h"
 
-int		check_commands(t_lemin *lemin)
+void 	check_start_end(t_lemin *lemin)
+{
+	if (lemin->start_room_name == NULL ||
+		lemin->end_room_name == NULL)
+		put_error("ERROR");
+}
+
+void	check_commands(t_lemin *lemin)
 {
 	int	i;
 	int	start;
@@ -31,17 +38,22 @@ int		check_commands(t_lemin *lemin)
 		i++;
 	}
 	if (i > 0 && !ft_strncmp(*(lemin->first_data + i - 1), "##", 2))
-		return (0);
-	return (start == 1 && end == 1 ? 1 : 0);
+		put_error("ERROR");
+	if (start != 1 || end != 1)
+		put_error("ERROR");
 }
 
-void	check_coords(int **coords, int *xy)
+void	check_coords(t_lemin *lemin, int *xy)
 {
-	while (*coords && (*coords)[1])
+	int i;
+
+	i = 0;
+	while (i < lemin->num_rooms)
 	{
-		if ((*coords)[0] == xy[0] && (*coords)[1] == xy[1])
+		if (lemin->rooms_coords[i][0] == xy[0] &&
+			lemin->rooms_coords[i][1] == xy[1])
 			put_error("ERROR");
-		coords += 2;
+		i++;
 	}
 }
 
@@ -51,8 +63,11 @@ void	parse_data(t_lemin *lemin)
 		!(lemin->rooms_coords = ft_memalloc(lemin->data_len * sizeof(int*))) ||
 		!(lemin->links_names = ft_memalloc(lemin->data_len * sizeof(int*))))
 		put_error("ERROR");
+	lemin->start_room_name = NULL;
+	lemin->end_room_name = NULL;
 	check_commands(lemin);
 	check_room_names(lemin);
+	check_start_end(lemin);
 	check_link_names(lemin);
 	if (lemin->num_ants < 1 ||
 		!lemin->num_rooms ||

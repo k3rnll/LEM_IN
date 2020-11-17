@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 11:36:56 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/11 11:49:19 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 21:11:32 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int		smart_atoi(char *str)
 
 	arg = ft_strsplit(str, ',');
 	if (!(len = ft_isnumber(*arg)) && len > 11)
-		put_error("Error: Wrong integer in the map");
+		put_error("ERROR");
 	tmp = ft_atoi(*arg);
 	if (len != ft_numlen(tmp) + (*str == '-' || *str == '+'))
-		put_error("Error: Wrong integer in the map");
+		put_error("ERROR");
 	if (*str != '-' && tmp < 0)
-		put_error("Error: Wrong integer in the map");
+		put_error("ERROR");
 	if (*str == '-' && tmp > 0)
-		put_error("Error: Wrong integer in the map");
+		put_error("ERROR");
 	i = 0;
 	while (arg[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/17 21:12:13 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 21:21:17 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void				print_input_data(t_lemin *lemin);
 int					read_data(t_lemin *lemin);
 void				parse_data(t_lemin *lemin);
 void				check_room_names(t_lemin *lemin);
-void				check_coords(int **coords, int *xy);
+void				check_coords(t_lemin *lemin, int *xy);
 int					check_link_names(t_lemin *lemin);
 char				**realloc_data(char **old, int *data_len);
 int					smart_atoi(char *str);
