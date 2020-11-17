@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lem_in
+NAME = lem-in
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
@@ -26,15 +26,19 @@ HDR_LIST =	lem_in.h
 HDR = $(addprefix $(HDR_DIR), $(HDR_LIST))
 
 SRC_DIR = ./src/
-SRC_LIST = 	bfs.c\
+SRC_LIST = 	ants.c\
+            bfs.c\
 		    flow_helper.c\
+		    links.c\
 		    logic.c\
 		    memory.c\
 		    print.c\
 		    reader.c\
+		    rooms.c\
 		    routes.c\
+		    routes_mods.c\
 		    smart_atoi.c\
-			temp_func.c\
+			#temp_func.c\
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
 
