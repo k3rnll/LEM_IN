@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/07 13:44:20 by k3                #+#    #+#             */
-/*   Updated: 2020/11/17 12:46:53 by k3               ###   ########.fr       */
+/*   Created: 2020/11/07 13:44:20 by tmarkita          #+#    #+#             */
+/*   Updated: 2020/11/17 20:24:44 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_lemin			*init_lemin(void)
 		lemin->ants_flag = 0;
 		lemin->num_rooms = 0;
 		lemin->num_links = 0;
+		lemin->num_routes = 0;
 	}
 	return (lemin);
 }
@@ -46,8 +47,7 @@ int				main(int ac, char **av)
 
 	lemin = init_lemin();
 	read_data(lemin);
-	if (!parse_data(lemin))
-		put_error("not valid input");
+	parse_data(lemin);
 	rooms_to_massive(lemin);
 	bfs(lemin);
 	find_routes(lemin);
@@ -55,5 +55,5 @@ int				main(int ac, char **av)
 		flow_ants(lemin);
 	else
 		(put_error("ERROR\n"));
-	exit (0);
+	exit(0);
 }

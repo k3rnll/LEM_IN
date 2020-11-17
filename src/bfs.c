@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/14 16:49:00 by k3                #+#    #+#             */
-/*   Updated: 2020/11/17 12:46:53 by k3               ###   ########.fr       */
+/*   Created: 2020/11/14 16:49:00 by tmarkita          #+#    #+#             */
+/*   Updated: 2020/11/17 19:27:27 by tmarkita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,39 +75,28 @@ int		ocrd_add(t_lemin *lemin, int *ocrd, int y, int step)
 
 void	bfs(t_lemin *lemin)
 {
-	int 	*ocrd;
-	int		len;
-	int 	cur;
-	int 	step;
-	int 	tmp;
+	int	*ocrd;
+	int len[2];
+	int step;
+	int tmp;
 
-	ocrd = ft_memalloc((2 * lemin->num_rooms) * sizeof(int));
+	if (!(ocrd = ft_memalloc((2 * lemin->num_rooms) * sizeof(int))))
+		put_error("ERROR");
 	step = 1;
-	len = ocrd_add(lemin, ocrd, 0, step);
-	step++;
-	cur = 0;
-	while (*ocrd)
+	len[0] = ocrd_add(lemin, ocrd, 0, step++);
+	len[1] = 0;
+	tmp = 0;
+	while (*ocrd && len[0] && tmp >= 0)
 	{
-		if (*ocrd != lemin->num_rooms - 1)
-		{
-			tmp = ocrd_add(lemin, ocrd, *ocrd, step);
-			if (tmp < 0)
-			{
-				break;
-			}
-			cur += tmp;
-		}
+		tmp = ocrd_add(lemin, ocrd, *ocrd, step);
+		len[1] += tmp;
 		shift_ocrd(lemin, ocrd);
-		len--;
-		if (len == 0)
+		len[0]--;
+		if (len[0] == 0)
 		{
 			step++;
-			len = cur;
-			cur = 0;
-		}
-		if (len == 0)
-		{
-			break;
+			len[0] = len[1];
+			len[1] = 0;
 		}
 	}
 	free(ocrd);

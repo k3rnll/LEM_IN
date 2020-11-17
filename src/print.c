@@ -6,7 +6,7 @@
 /*   By: clouise <clouise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/17 10:33:37 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/17 16:49:52 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ t_ant		*new_ant(int num, int ind)
 	t_ant	*ant;
 
     if (!(ant = ft_memalloc(sizeof(t_ant))))
-    {
-		put_error("no mem for ant");
-	}
+        put_error("no mem for ant");
 	ant->ant_num = num;
 	ant->step = 1;
 	ant->route_index = ind;

@@ -5,17 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/08 16:24:53 by k3                #+#    #+#             */
-/*   Updated: 2020/11/17 14:50:26 by k3               ###   ########.fr       */
+/*   Created: 2020/11/08 16:24:53 by tmarkita          #+#    #+#             */
+/*   Updated: 2020/11/17 19:56:13 by tmarkita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../include/lem_in.h"
 
-void 	free_first_data(char **old, int *data_len)
+void	free_first_data(char **old, int *data_len)
 {
-	int 	i;
+	int	i;
 
 	i = 0;
 	while (i < *data_len)
@@ -26,9 +26,9 @@ void 	free_first_data(char **old, int *data_len)
 	free(old);
 }
 
-char 	**realloc_data(char **old, int *data_len)
+char	**realloc_data(char **old, int *data_len)
 {
-	char 	**new;
+	char	**new;
 
 	new = ft_memalloc((*data_len + BUFF) * 8);
 	if (new)
@@ -42,12 +42,12 @@ char 	**realloc_data(char **old, int *data_len)
 	{
 		free_first_data(old, data_len);
 		ft_putendl_fd("ERROR: no memory", 2);
-		exit (1);
+		exit(1);
 	}
 	return (new);
 }
 
-void 	free_strsplit(char **arr)
+void	free_strsplit(char **arr)
 {
 	while (arr && *arr)
 	{

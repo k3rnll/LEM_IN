@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 17:35:29 by k3                #+#    #+#             */
-/*   Updated: 2020/11/17 14:29:15 by k3               ###   ########.fr       */
+/*   Created: 2020/11/11 17:35:29 by tmarkita          #+#    #+#             */
+/*   Updated: 2020/11/17 19:47:29 by tmarkita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	clean_route_in_matrix(t_lemin *lemin, int *arr)
 	}
 }
 
-int 	get_in_point(t_lemin *lemin, int y, int x)
+int		get_in_point(t_lemin *lemin, int y, int x)
 {
 	while (x < lemin->num_rooms)
 	{
@@ -69,50 +69,37 @@ int		*check_route(t_lemin *lemin, int y)
 	int	x;
 
 	x = lemin->num_rooms - 1;
-	arr = ft_memalloc(lemin->num_rooms * sizeof(int));
+	if (!(arr = ft_memalloc(lemin->num_rooms * sizeof(int))))
+		put_error("ERROR");
+	i = 0;
 	if (y == 0)
-	{
 		lemin->rooms_links[y][lemin->num_rooms - 1] = 0;
-		i = 0;
-	}
 	else
 		i = lemin->rooms_links[y][lemin->num_rooms - 1] - 1;
-	arr[i] = x;
-	i--;
+	arr[i--] = x;
 	while (i >= 0)
 	{
 		arr[i] = y;
 		y = get_in_point(lemin, y, 0);
 		if (y == 0 && i > 0)
-		{
 			y = get_in_point(lemin, arr[i + 1], arr[i] + 1);
-		}
 		else
 			i--;
 	}
-	if (*arr)
-	{
-		clean_route_in_matrix(lemin, arr);
-		reset_bfs(lemin);
-		return (arr);
-	}
+	clean_route_in_matrix(lemin, arr);
 	reset_bfs(lemin);
-	free(arr);
-	return (NULL);
+	return (arr);
 }
 
-int		find_routes(t_lemin *lemin)
+void	find_routes(t_lemin *lemin)
 {
 	int	*route;
-	int len;
-	int	l;
 	int	y;
 
-	lemin->num_routes = 0;
-	lemin->routes = ft_memalloc(lemin->num_rooms * sizeof(int*));
+	if (!(lemin->routes = ft_memalloc(lemin->num_rooms * sizeof(int*))))
+		put_error("ERROR");
 	lemin->min_route_len = lemin->num_rooms;
 	y = 0;
-	l = 0;
 	while (y < lemin->num_rooms)
 	{
 		if ((y == 0 && lemin->rooms_links[y][lemin->num_rooms - 1] > 0) ||
@@ -120,15 +107,14 @@ int		find_routes(t_lemin *lemin)
 		{
 			if ((route = check_route(lemin, y)))
 			{
-				len = route_len(lemin, route);
-				lemin->min_route_len = len < lemin->min_route_len ?
-						len : lemin->min_route_len;
-				lemin->routes[l++] = route;
+				lemin->min_route_len =
+						route_len(lemin, route) < lemin->min_route_len ?
+						route_len(lemin, route) : lemin->min_route_len;
+				lemin->routes[lemin->num_routes] = route;
 				lemin->num_routes += 1;
 			}
 			y = 0;
 		}
 		y++;
 	}
-	return (1);
 }
