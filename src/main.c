@@ -51,10 +51,12 @@ t_lemin		*init_lemin(void)
 	return (lemin);
 }
 
-int			main(void)
+int			main(int ac, char **av)
 {
 	t_lemin		*lemin;
 
+	if (ac > 1 || !av)
+		put_error("ERROR");
 	lemin = init_lemin();
 	read_data(lemin);
 	parse_data(lemin);
