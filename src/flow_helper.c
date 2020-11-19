@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 19:54:14 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/17 20:24:44 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/18 19:55:55 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ int		routes_to_use(t_lemin *lemin, int ants)
 	if (lemin->num_routes == 0)
 		return (0);
 	i = 1;
-	while (i < lemin->num_routes)
+	while (i < lemin->num_routes + 1)
 	{
 		if (ants < route_len_sum(lemin, i))
 			return (i - 1);
 		ants--;
 		i++;
 	}
-	return (i);
+	return (i - 1);
 }
