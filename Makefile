@@ -6,14 +6,14 @@
 #    By: clouise <clouise@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/31 00:34:02 by clouise           #+#    #+#              #
-#    Updated: 2020/10/31 00:38:40 by clouise          ###   ########.fr        #
+#    Updated: 2020/11/23 18:16:57 by k3               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -O3
+FLAGS = -O3 -Wall -Wextra -Werror
 LIBR = -L$(LIB_DIR) -lft
 INCL = -I$(HDR_DIR) -I$(LIB_HDR)
 
@@ -31,6 +31,7 @@ SRC_LIST = 	ants.c\
 		    flow_helper.c\
 		    links.c\
 		    logic.c\
+		    main.c\
 		    memory.c\
 		    print.c\
 		    reader.c\
@@ -51,13 +52,9 @@ OBJ = $(addprefix $(OBJ_DIR), $(OBJ_LIST))
 
 all: $(NAME)
 
-$(NAME): $(LIB) $(OBJ_DIR) $(OBJ) $(OBJ_DIR)main.o
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(OBJ_DIR)main.o $(LIBR)
+$(NAME): $(LIB) $(OBJ_DIR) $(OBJ)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIBR)
 	@echo $@ Done
-
-$(OBJ_DIR)main.o: $(SRC_DIR)main.c $(HDR)
-	@$(CC) $(FLAGS) $(INCL) -o $@ -c $<
-	@echo OBJECT: $@ updated
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
