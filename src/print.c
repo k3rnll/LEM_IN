@@ -6,7 +6,7 @@
 /*   By: clouise <clouise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by clouise           #+#    #+#             */
-/*   Updated: 2020/11/23 13:37:17 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 13:38:06 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	flow_ants(t_lemin *lemin)
 
 	if (lemin->num_routes == 0)
 		put_error("ERROR");
-	print_input_data(lemin);
+	lemin->p_data ? print_input_data(lemin) : 0;
 	total_use = routes_to_use(lemin, lemin->num_ants);
 	ant_groups = ft_memalloc(total_use * sizeof(int*));
 	ants = 0;

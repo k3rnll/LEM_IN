@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/17 21:21:17 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 14:00:45 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct		s_lemin
 	int				**rooms_links;
 	int				**routes;
 	int				min_route_len;
+	int 			p_routes;
+	int 			p_data;
 }					t_lemin;
 
 typedef struct		s_ant
@@ -68,5 +70,6 @@ void				add_ant(t_ant *ant, int num, int ind);
 void				free_ants(t_ant **ant_groups);
 void				fill_ant_groups(t_lemin *lemin,
 						t_ant **ant_groups, int ants);
+void				print_routes(t_lemin *lemin);
 
 #endif
