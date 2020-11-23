@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/23 15:37:49 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 15:45:56 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void 		parse_flags(t_lemin *lemin, int ac, char **av)
 	i = 1;
 	while (av[i] && ac)
 	{
-		if (av[i] && ft_strequ("-r", av[i]))
+		if (av[i] && ft_strequ("-r", av[i]) && !lemin->p_routes)
 			lemin->p_routes = 1;
-		else if (av[i] && ft_strequ("-d", av[i]))
+		else if (av[i] && ft_strequ("-d", av[i]) && lemin->p_data)
 			lemin->p_data = 0;
 		else
 			put_error(
