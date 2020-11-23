@@ -6,27 +6,14 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 16:24:53 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/23 17:28:45 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 18:06:17 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../include/lem_in.h"
 
-void	free_first_data(t_lemin *lemin)
-{
-	int	i;
-
-	i = 0;
-	while (i < lemin->data_len)
-	{
-		free(lemin->first_data[i]);
-		i++;
-	}
-	free(lemin->first_data);
-}
-
-char	**realloc_data(t_lemin *lemin)
+void	realloc_data(t_lemin *lemin)
 {
 	char	**new;
 
@@ -36,13 +23,6 @@ char	**realloc_data(t_lemin *lemin)
 	free(lemin->first_data);
 	lemin->data_len += BUFF;
 	lemin->first_data = new;
-//	}
-//	else
-//	{
-//		free_first_data(old, data_len);
-//		put_error("ERROR");
-//	}
-//	return (new);
 }
 
 void	free_strsplit(char **arr)

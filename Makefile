@@ -13,7 +13,7 @@
 NAME = lem-in
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -O3
 LIBR = -L$(LIB_DIR) -lft
 INCL = -I$(HDR_DIR) -I$(LIB_HDR)
 

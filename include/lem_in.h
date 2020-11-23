@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/23 16:59:33 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 18:06:17 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ void				parse_data(t_lemin *lemin);
 void				check_room_names(t_lemin *lemin);
 void				check_coords(t_lemin *lemin, int *xy);
 int					check_link_names(t_lemin *lemin);
-char				**realloc_data(t_lemin *lemin);
-void				free_first_data(t_lemin *lemin);
+void				realloc_data(t_lemin *lemin);
 int					smart_atoi(char *str);
 int					ft_isnumber(char *str);
 int					route_len(t_lemin *lemin, int *arr);
