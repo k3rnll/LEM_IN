@@ -70,7 +70,7 @@ void	fill_ant_groups(t_lemin *lemin, t_ant **ant_groups, int ants)
 	{
 		use = routes_to_use(lemin, lemin->num_ants - ants);
 		i = 0;
-		while (i < use)
+		while (i < use && ants < lemin->num_ants)
 		{
 			ants++;
 			add_ant(ant_groups[i], ants, i);

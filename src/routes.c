@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/23 13:12:06 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 13:15:12 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int 	*limp_route(t_lemin *lemin, int len)
 
 	arr = ft_memalloc(lemin->num_rooms * sizeof(int));
 	i = 0;
-	while (i < len)
+	while (i < len - 1)
 	{
 		arr[i] = 1;
 		i++;

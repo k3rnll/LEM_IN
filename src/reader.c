@@ -61,7 +61,7 @@ void	parse_data(t_lemin *lemin)
 {
 	if (!(lemin->rooms_names = ft_memalloc(lemin->data_len * sizeof(char*))) ||
 		!(lemin->rooms_coords = ft_memalloc(lemin->data_len * sizeof(int*))) ||
-		!(lemin->links_names = ft_memalloc(lemin->data_len * sizeof(int*))))
+		!(lemin->links_names = ft_memalloc(lemin->data_len * sizeof(char**))))
 		put_error("ERROR");
 	lemin->start_room_name = NULL;
 	lemin->end_room_name = NULL;
