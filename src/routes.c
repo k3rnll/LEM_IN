@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/17 20:24:44 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 13:12:06 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,31 @@ int		*check_route(t_lemin *lemin, int y)
 	return (arr);
 }
 
+void 	del_limp_route(t_lemin *lemin)
+{
+	lemin->num_routes--;
+	free(lemin->routes[lemin->num_routes]);
+	lemin->routes[lemin->num_routes] = 0;
+}
+
+int 	*limp_route(t_lemin *lemin, int len)
+{
+	int	*arr;
+	int i;
+
+	arr = ft_memalloc(lemin->num_rooms * sizeof(int));
+	i = 0;
+	while (i < len)
+	{
+		arr[i] = 1;
+		i++;
+	}
+	arr[i] = lemin->num_rooms - 1;
+	lemin->routes[lemin->num_routes] = arr;
+	lemin->num_routes++;
+	return (arr);
+}
+
 void	find_routes(t_lemin *lemin)
 {
 	int	*route;
@@ -77,6 +102,13 @@ void	find_routes(t_lemin *lemin)
 		if ((y == 0 && lemin->rooms_links[y][lemin->num_rooms - 1] > 0) ||
 		lemin->rooms_links[y][lemin->num_rooms - 1] > 1)
 		{
+			limp_route(lemin, lemin->rooms_links[y][lemin->num_rooms - 1]);
+			if (lemin->num_routes > routes_to_use(lemin, lemin->num_ants))
+			{
+				del_limp_route(lemin);
+				break;
+			}
+			del_limp_route(lemin);
 			if ((route = check_route(lemin, y)))
 			{
 				lemin->min_route_len =

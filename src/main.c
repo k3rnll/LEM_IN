@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/17 21:26:10 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 13:29:02 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void		print_input_data(t_lemin *lemin)
 {
 	while (*(lemin->first_data))
 	{
-		ft_putendl(*(lemin->first_data));
+		write(1, *lemin->first_data, ft_strlen(*lemin->first_data));
+		write(1, "\n", 1);
 		(lemin->first_data)++;
 	}
 	write(1, "\n", 1);

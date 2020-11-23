@@ -6,7 +6,7 @@
 /*   By: clouise <clouise@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by clouise           #+#    #+#             */
-/*   Updated: 2020/11/17 21:24:06 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 13:37:17 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void	print_ant(t_lemin *lemin, t_ant *ant)
 		if (lemin->routes[ant->route_index][ant->curr_room] ==
 			lemin->num_rooms - 1)
 			ant->step = 0;
-		ft_putchar('L');
+		write(1, "L", 1);
 		ft_putnbr(ant->ant_num);
-		ft_putchar('-');
-		ft_putstr(lemin->rooms_names[lemin->routes
-			[ant->route_index][ant->curr_room]]);
-		ft_putchar(' ');
+		write(1, "-", 1);
+		write(1, lemin->rooms_names[lemin->routes
+			[ant->route_index][ant->curr_room]], ft_strlen(lemin->rooms_names[lemin->routes
+		[ant->route_index][ant->curr_room]]));
+		write(1, " ", 1);
 		ant->curr_room += 1;
 	}
 }
