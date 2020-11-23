@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:54:30 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/17 22:23:16 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 17:45:14 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	check_coords(t_lemin *lemin, int *xy)
 
 void	parse_data(t_lemin *lemin)
 {
-	if (!(lemin->rooms_names = ft_memalloc(lemin->data_len * sizeof(char*))) ||
-		!(lemin->rooms_coords = ft_memalloc(lemin->data_len * sizeof(int*))) ||
-		!(lemin->links_names = ft_memalloc(lemin->data_len * sizeof(char**))))
+	if (!(lemin->rooms_names = ft_memalloc(lemin->data_len * 2)) ||
+		!(lemin->rooms_coords = ft_memalloc(lemin->data_len * 2)) ||
+		!(lemin->links_names = ft_memalloc(lemin->data_len * 4)))
 		put_error("ERROR");
 	lemin->start_room_name = NULL;
 	lemin->end_room_name = NULL;
@@ -84,8 +84,7 @@ int		read_data(t_lemin *lemin)
 	while (get_next_line(0, &line))
 	{
 		if (i == lemin->data_len)
-			lemin->first_data =
-					realloc_data(lemin->first_data, &lemin->data_len);
+			realloc_data(lemin);
 		lemin->first_data[i] = line;
 		i++;
 	}

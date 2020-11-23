@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 16:49:00 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/17 19:27:27 by tmarkita         ###   ########.fr       */
+/*   Updated: 2020/11/23 17:49:57 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	bfs(t_lemin *lemin)
 	int step;
 	int tmp;
 
-	if (!(ocrd = ft_memalloc((2 * lemin->num_rooms) * sizeof(int))))
+	if (!(ocrd = ft_memalloc((2 * lemin->num_rooms) * 2)))
 		put_error("ERROR");
 	step = 1;
 	len[0] = ocrd_add(lemin, ocrd, 0, step++);

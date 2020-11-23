@@ -51,7 +51,7 @@ void	add_room_name(t_lemin *lemin, char **arr)
 {
 	int	*xy;
 
-	if (!(xy = ft_memalloc(2 * sizeof(int*))) || arr[3])
+	if (!(xy = ft_memalloc(4)) || arr[3])
 		put_error("ERROR");
 	xy[0] = smart_atoi(arr[1]);
 	xy[1] = smart_atoi(arr[2]);

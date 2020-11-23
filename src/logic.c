@@ -50,11 +50,11 @@ int		**new_links_massive(t_lemin *lemin)
 	int **matrix;
 	int i;
 
-	matrix = ft_memalloc(lemin->num_rooms * sizeof(int**));
+	matrix = ft_memalloc(lemin->num_rooms * 2);
 	i = 0;
 	while (i < lemin->num_rooms)
 	{
-		matrix[i] = ft_memalloc(lemin->num_rooms * sizeof(int));
+		matrix[i] = ft_memalloc(lemin->num_rooms);
 		i++;
 	}
 	return (matrix);

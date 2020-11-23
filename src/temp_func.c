@@ -3,6 +3,27 @@
 #include "../libft/libft.h"
 #include <stdio.h>
 
+void	print_route(t_lemin *lemin, int **arr)
+{
+	int	i;
+	int	l;
+
+	i = 0;
+	while (arr[i] && i < lemin->num_rooms)
+	{
+		l = 0;
+		printf("[%d] ", route_len(lemin, arr[i]));
+		while (l < lemin->num_rooms && arr[i][l] != 0)
+		{
+			printf("%s ", lemin->rooms_names[arr[i][l]]);
+			l++;
+		}
+		printf("\n");
+		i++;
+	}
+	printf("\n");
+}
+/*
 void	print_data(t_lemin *lemin)
 {
 	int			i;
@@ -92,27 +113,6 @@ void	print_one_route(t_lemin *lemin, int *arr)
 		l++;
 	}
 
-	printf("\n");
-}
-
-void	print_route(t_lemin *lemin, int **arr)
-{
-	int	i;
-	int	l;
-
-	i = 0;
-	while (arr[i] && i < lemin->num_rooms)
-	{
-		l = 0;
-		printf("[%d] ", route_len(lemin, arr[i]));
-		while (l < lemin->num_rooms && arr[i][l] != 0)
-		{
-			printf("%s ", lemin->rooms_names[arr[i][l]]);
-			l++;
-		}
-		printf("\n");
-		i++;
-	}
 	printf("\n");
 }
 
@@ -261,3 +261,4 @@ int		path_has_out_forks(t_lemin *lemin, int y)
 	}
 	return (0);
 }
+*/

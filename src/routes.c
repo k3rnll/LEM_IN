@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/23 13:15:12 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 17:57:20 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		*check_route(t_lemin *lemin, int y)
 	int	x;
 
 	x = lemin->num_rooms - 1;
-	if (!(arr = ft_memalloc(lemin->num_rooms * sizeof(int))))
+	if (!(arr = ft_memalloc(lemin->num_rooms + 1)))
 		put_error("ERROR");
 	i = 0;
 	if (y == 0)
@@ -75,7 +75,7 @@ int 	*limp_route(t_lemin *lemin, int len)
 	int	*arr;
 	int i;
 
-	arr = ft_memalloc(lemin->num_rooms * sizeof(int));
+	arr = ft_memalloc(lemin->num_rooms + 1);
 	i = 0;
 	while (i < len - 1)
 	{
@@ -93,7 +93,7 @@ void	find_routes(t_lemin *lemin)
 	int	*route;
 	int	y;
 
-	if (!(lemin->routes = ft_memalloc(lemin->num_rooms * sizeof(int*))))
+	if (!(lemin->routes = ft_memalloc(lemin->num_rooms * 2)))
 		put_error("ERROR");
 	lemin->min_route_len = lemin->num_rooms;
 	y = 0;

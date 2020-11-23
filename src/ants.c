@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 20:58:00 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/17 21:00:57 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 16:02:46 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_ant	*new_ant(int num, int ind)
 {
 	t_ant	*ant;
 
-	if (!(ant = ft_memalloc(sizeof(t_ant))))
+	if (!(ant = malloc(sizeof(t_ant))))
 		put_error("no mem for ant");
 	ant->ant_num = num;
 	ant->step = 1;

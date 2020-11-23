@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/23 15:45:56 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 17:34:52 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ void		put_error(char *str)
 
 void		print_input_data(t_lemin *lemin)
 {
-	while (*(lemin->first_data))
+	int i;
+
+	i = 0;
+	while (i < lemin->data_len)
 	{
-		write(1, *lemin->first_data, ft_strlen(*lemin->first_data));
+		write(1, lemin->first_data[i], ft_strlen(lemin->first_data[i]));
 		write(1, "\n", 1);
-		(lemin->first_data)++;
+		i++;
 	}
 	write(1, "\n", 1);
 }
@@ -34,10 +37,10 @@ t_lemin		*init_lemin(void)
 {
 	t_lemin		*lemin;
 
-	lemin = ft_memalloc(sizeof(t_lemin));
+	lemin = malloc(sizeof(t_lemin));
 	if (lemin)
 	{
-		if (!(lemin->first_data = ft_memalloc(BUFF * sizeof(char*))))
+		if (!(lemin->first_data = malloc(BUFF * sizeof(char*))))
 		{
 			free(lemin);
 			return (NULL);
