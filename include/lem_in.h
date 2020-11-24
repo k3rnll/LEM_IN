@@ -64,6 +64,7 @@ void				find_routes(t_lemin *lemin);
 void				clean_route_in_matrix(t_lemin *lemin, int *arr);
 void				flow_ants(t_lemin *lemin);
 int					routes_to_use(t_lemin *lemin, int ants);
+int					is_good_route(t_lemin *lemin, int y);
 void				free_strsplit(char **arr);
 t_ant				*new_ant(int num, int ind);
 void				add_ant(t_ant *ant, int num, int ind);

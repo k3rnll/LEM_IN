@@ -23,10 +23,10 @@ void	print_ant(t_lemin *lemin, t_ant *ant)
 		write(1, "L", 1);
 		ft_putnbr(ant->ant_num);
 		write(1, "-", 1);
-		write(1, lemin->rooms_names[lemin->routes
-			[ant->route_index][ant->curr_room]],
-				ft_strlen(lemin->rooms_names[lemin->routes
-				[ant->route_index][ant->curr_room]]));
+		write(1, lemin->rooms_names
+			[lemin->routes[ant->route_index][ant->curr_room]],
+			ft_strlen(lemin->rooms_names
+			[lemin->routes[ant->route_index][ant->curr_room]]));
 		write(1, " ", 1);
 		ant->curr_room += 1;
 	}

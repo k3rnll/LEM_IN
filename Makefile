@@ -37,6 +37,7 @@ SRC_LIST = 	ants.c\
 		    reader.c\
 		    rooms.c\
 		    routes.c\
+		    limp_route.c\
 		    routes_mods.c\
 		    smart_atoi.c\
 		    debug.c

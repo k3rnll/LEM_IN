@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/23 17:57:20 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/24 13:19:27 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,35 +63,10 @@ int		*check_route(t_lemin *lemin, int y)
 	return (arr);
 }
 
-void 	del_limp_route(t_lemin *lemin)
-{
-	lemin->num_routes--;
-	free(lemin->routes[lemin->num_routes]);
-	lemin->routes[lemin->num_routes] = 0;
-}
-
-int 	*limp_route(t_lemin *lemin, int len)
-{
-	int	*arr;
-	int i;
-
-	arr = ft_memalloc(lemin->num_rooms + 1);
-	i = 0;
-	while (i < len - 1)
-	{
-		arr[i] = 1;
-		i++;
-	}
-	arr[i] = lemin->num_rooms - 1;
-	lemin->routes[lemin->num_routes] = arr;
-	lemin->num_routes++;
-	return (arr);
-}
-
 void	find_routes(t_lemin *lemin)
 {
-	int	*route;
 	int	y;
+	int len;
 
 	if (!(lemin->routes = ft_memalloc(lemin->num_rooms * 2)))
 		put_error("ERROR");
@@ -100,21 +75,15 @@ void	find_routes(t_lemin *lemin)
 	while (y < lemin->num_rooms)
 	{
 		if ((y == 0 && lemin->rooms_links[y][lemin->num_rooms - 1] > 0) ||
-		lemin->rooms_links[y][lemin->num_rooms - 1] > 1)
+			lemin->rooms_links[y][lemin->num_rooms - 1] > 1)
 		{
-			limp_route(lemin, lemin->rooms_links[y][lemin->num_rooms - 1]);
-			if (lemin->num_routes > routes_to_use(lemin, lemin->num_ants))
+			if (!is_good_route(lemin, y))
+				break ;
+			if ((lemin->routes[lemin->num_routes] = check_route(lemin, y)))
 			{
-				del_limp_route(lemin);
-				break;
-			}
-			del_limp_route(lemin);
-			if ((route = check_route(lemin, y)))
-			{
-				lemin->min_route_len =
-						route_len(lemin, route) < lemin->min_route_len ?
-						route_len(lemin, route) : lemin->min_route_len;
-				lemin->routes[lemin->num_routes] = route;
+				len = route_len(lemin, lemin->routes[lemin->num_routes]);
+				lemin->min_route_len = len < lemin->min_route_len ?
+									   len : lemin->min_route_len;
 				lemin->num_routes += 1;
 			}
 			y = 0;
