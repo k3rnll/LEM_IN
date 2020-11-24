@@ -83,7 +83,7 @@ void	find_routes(t_lemin *lemin)
 			{
 				len = route_len(lemin, lemin->routes[lemin->num_routes]);
 				lemin->min_route_len = len < lemin->min_route_len ?
-									   len : lemin->min_route_len;
+					len : lemin->min_route_len;
 				lemin->num_routes += 1;
 			}
 			y = 0;
