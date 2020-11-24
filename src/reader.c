@@ -13,7 +13,7 @@
 #include "../libft/libft.h"
 #include "../include/lem_in.h"
 
-void 	check_start_end(t_lemin *lemin)
+void	check_start_end(t_lemin *lemin)
 {
 	if (lemin->start_room_name == NULL ||
 		lemin->end_room_name == NULL)

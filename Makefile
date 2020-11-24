@@ -6,7 +6,7 @@
 #    By: clouise <clouise@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/31 00:34:02 by clouise           #+#    #+#              #
-#    Updated: 2020/11/23 18:16:57 by k3               ###   ########.fr        #
+#    Updated: 2020/11/24 12:43:12 by clouise          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ SRC_LIST = 	ants.c\
 		    routes_mods.c\
 		    smart_atoi.c\
 		    debug.c
-			#temp_func.c\
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
 

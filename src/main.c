@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:44:20 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/23 17:34:52 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/24 12:48:42 by clouise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		print_input_data(t_lemin *lemin)
 
 t_lemin		*init_lemin(void)
 {
-	t_lemin		*lemin;
+	t_lemin	*lemin;
 
 	lemin = malloc(sizeof(t_lemin));
 	if (lemin)
@@ -53,14 +53,13 @@ t_lemin		*init_lemin(void)
 		lemin->num_routes = 0;
 		lemin->p_routes = 0;
 		lemin->p_data = 1;
-
 	}
 	return (lemin);
 }
 
-void 		parse_flags(t_lemin *lemin, int ac, char **av)
+void		parse_flags(t_lemin *lemin, int ac, char **av)
 {
-	int	i;
+	int		i;
 
 	i = 1;
 	while (av[i] && ac)

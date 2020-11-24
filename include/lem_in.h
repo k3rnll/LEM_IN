@@ -6,14 +6,14 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/23 18:06:17 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/24 12:43:12 by clouise          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-# define BUFF		1
+# define BUFF		150
 
 typedef struct		s_lemin
 {
@@ -32,8 +32,8 @@ typedef struct		s_lemin
 	int				**rooms_links;
 	int				**routes;
 	int				min_route_len;
-	int 			p_routes;
-	int 			p_data;
+	int				p_routes;
+	int				p_data;
 }					t_lemin;
 
 typedef struct		s_ant

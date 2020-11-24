@@ -34,9 +34,9 @@ void	fill_start_end(t_lemin *lemin, char *name, int i)
 	}
 }
 
-void 	check_room_duplicate(t_lemin *lemin, char *room)
+void	check_room_duplicate(t_lemin *lemin, char *room)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < lemin->num_rooms)
