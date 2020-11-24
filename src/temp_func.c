@@ -23,18 +23,6 @@ void	print_route(t_lemin *lemin, int **arr)
 	}
 	printf("\n");
 }
-/*
-void	print_data(t_lemin *lemin)
-{
-	int			i;
-
-	i = 0;
-	while (i < lemin->num_rooms)
-	{
-		printf("%s\n", *(lemin->rooms_names + i));
-		i++;
-	}
-}
 
 void	print_matrix(t_lemin *lemin)
 {
@@ -57,19 +45,6 @@ void	print_matrix(t_lemin *lemin)
 	printf("\n");
 }
 
-void	print_firstline(t_lemin *lemin, int y)
-{
-	int			i;
-
-	i = 0;
-	while (i < lemin->num_rooms)
-	{
-		if (lemin->rooms_links[y][i])
-			printf("%d.%s ", i, lemin->rooms_names[i]);
-		i++;
-	}
-	printf("\n");
-}
 
 void	print_endline(t_lemin *lemin)
 {
@@ -85,6 +60,34 @@ void	print_endline(t_lemin *lemin)
 	}
 	printf("\n");
 }
+/*
+void	print_data(t_lemin *lemin)
+{
+	int			i;
+
+	i = 0;
+	while (i < lemin->num_rooms)
+	{
+		printf("%s\n", *(lemin->rooms_names + i));
+		i++;
+	}
+}
+
+
+void	print_firstline(t_lemin *lemin, int y)
+{
+	int			i;
+
+	i = 0;
+	while (i < lemin->num_rooms)
+	{
+		if (lemin->rooms_links[y][i])
+			printf("%d.%s ", i, lemin->rooms_names[i]);
+		i++;
+	}
+	printf("\n");
+}
+
 
 void	print_total_links(t_lemin *lemin)
 {

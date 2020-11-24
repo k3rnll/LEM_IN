@@ -6,7 +6,7 @@
 /*   By: k3 <k3@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 13:55:10 by k3                #+#    #+#             */
-/*   Updated: 2020/11/23 15:23:17 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 15:30:44 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_routes(t_lemin *lemin)
 	arr = lemin->routes;
 	i = 0;
 	write(1, " ======================\n ROUTES: \n [len], name1 name2 ...\n ======================\n", 82);
-	while (arr[i] && i < lemin->num_rooms)
+	while (arr[i] && i < lemin->num_routes)
 	{
 		l = 0;
 		write (1, "[", 1);

@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:35:29 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/23 17:57:20 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/24 10:51:14 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		route_len(t_lemin *lemin, int *arr)
 	int	len;
 
 	len = 0;
-	while (arr[len] != lemin->num_rooms - 1 && len < lemin->num_rooms)
+	while (arr && arr[len] != lemin->num_rooms - 1 && len < lemin->num_rooms)
 		len++;
 	return (len);
 }
@@ -27,7 +27,8 @@ int		get_in_point(t_lemin *lemin, int y, int x)
 {
 	while (x < lemin->num_rooms)
 	{
-		if (lemin->rooms_links[y][x] > lemin->rooms_links[x][y])
+		if (lemin->rooms_links[y][x] > 0 && lemin->rooms_links[x][y] > 0 &&
+				lemin->rooms_links[y][x] > lemin->rooms_links[x][y])
 			return (x);
 		x++;
 	}
@@ -93,14 +94,13 @@ void	find_routes(t_lemin *lemin)
 	int	*route;
 	int	y;
 
-	if (!(lemin->routes = ft_memalloc(lemin->num_rooms * 2)))
-		put_error("ERROR");
 	lemin->min_route_len = lemin->num_rooms;
 	y = 0;
 	while (y < lemin->num_rooms)
 	{
 		if ((y == 0 && lemin->rooms_links[y][lemin->num_rooms - 1] > 0) ||
-		lemin->rooms_links[y][lemin->num_rooms - 1] > 1)
+		(lemin->rooms_links[y][lemin->num_rooms - 1] > 1 &&
+		lemin->rooms_links[y][lemin->num_rooms - 1] < 110))
 		{
 			limp_route(lemin, lemin->rooms_links[y][lemin->num_rooms - 1]);
 			if (lemin->num_routes > routes_to_use(lemin, lemin->num_ants))

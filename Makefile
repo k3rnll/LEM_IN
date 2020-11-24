@@ -39,7 +39,8 @@ SRC_LIST = 	ants.c\
 		    routes.c\
 		    routes_mods.c\
 		    smart_atoi.c\
-		    debug.c
+		    debug.c\
+		    start_routes.c\
 			#temp_func.c\
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))

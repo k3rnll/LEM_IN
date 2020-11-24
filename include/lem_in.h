@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:51:08 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/23 18:06:17 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/23 20:36:58 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ typedef struct		s_lemin
 	int				min_route_len;
 	int 			p_routes;
 	int 			p_data;
+	int 			**start_routes;
+	int 			bfs_prec;
+	int 			***routes_groups;
+	int 			founded;
 }					t_lemin;
 
 typedef struct		s_ant
@@ -71,5 +75,11 @@ void				free_ants(t_ant **ant_groups);
 void				fill_ant_groups(t_lemin *lemin,
 						t_ant **ant_groups, int ants);
 void				print_routes(t_lemin *lemin);
+int 				*limp_route(t_lemin *lemin, int len);
+void 				del_limp_route(t_lemin *lemin);
+int					get_in_point(t_lemin *lemin, int y, int x);
+void				get_start_routes(t_lemin *lemin);
+void				clean_route_in_matrix(t_lemin *lemin, int *arr);
+void				restore_matrix(t_lemin *lemin);
 
 #endif
