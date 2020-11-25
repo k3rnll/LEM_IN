@@ -6,7 +6,7 @@
 /*   By: tmarkita <tmarkita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:54:30 by tmarkita          #+#    #+#             */
-/*   Updated: 2020/11/23 17:45:14 by k3               ###   ########.fr       */
+/*   Updated: 2020/11/25 15:35:06 by k3               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,13 @@ int		read_data(t_lemin *lemin)
 {
 	char	*line;
 	int		i;
+	int		ret;
 
 	i = 0;
-	while (get_next_line(0, &line))
+	while ((ret = get_next_line(0, &line)))
 	{
+		if (ret < 0)
+			put_error("ERROR");
 		if (i == lemin->data_len)
 			realloc_data(lemin);
 		lemin->first_data[i] = line;
